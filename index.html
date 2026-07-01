@@ -583,7 +583,7 @@
         grid.innerHTML = '';
         data.items.slice(0, 6).forEach(item => {
           const date = new Date(item.pubDate);
-          const dateStr = date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+          const dateStr = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
           const tmp = document.createElement('div');
           tmp.innerHTML = item.description || '';
           let excerpt = (tmp.textContent || tmp.innerText || '').trim().slice(0, 120);
