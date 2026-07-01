@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daniel Santiago — Cybersecurity &amp; IAM</title>
+<meta name="description" content="Daniel Santiago — Cybersecurity professional specializing in IAM, cloud security, and Zero Trust architecture.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper: #F2F4F1;
+    --paper-raised: #FBFCFA;
+    --ink: #16233A;
+    --ink-soft: #4A5568;
+    --line: #C9D0CA;
+    --amber: #C08A2E;
+    --amber-deep: #8F6A20;
+    --teal: #2D6A6E;
+    --red: #A6423B;
+    --mono: 'JetBrains Mono', monospace;
+    --body: 'IBM Plex Sans', sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--body);
+    line-height:1.6;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size:48px 48px;
+    background-position:-1px -1px;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important;}
+  }
+  a{color:inherit;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 28px;}
+  ::selection{background:var(--amber); color:var(--paper-raised);}
+  :focus-visible{outline:2px solid var(--teal); outline-offset:3px;}
+
+  /* ---------- Barcode divider ---------- */
+  .barcode{
+    display:flex; align-items:flex-end; gap:3px; height:22px; margin:0 auto;
+    width:fit-content; opacity:0.55;
+  }
+  .barcode span{display:block; width:2px; background:var(--ink-soft);}
+
+  /* ---------- Nav ---------- */
+  header.nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(242,244,241,0.9); backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{display:flex; align-items:center; justify-content:space-between; padding:16px 28px; max-width:1080px; margin:0 auto;}
+  .logo{font-family:var(--mono); font-weight:700; font-size:15px; letter-spacing:0.02em;}
+  .logo span{color:var(--amber);}
+  nav ul{list-style:none; display:flex; gap:26px;}
+  nav a{font-family:var(--mono); font-size:12.5px; text-decoration:none; text-transform:uppercase; letter-spacing:0.06em; color:var(--ink-soft); transition:color .15s;}
+  nav a:hover{color:var(--ink);}
+  .nav-toggle{display:none; font-family:var(--mono); background:none; border:1px solid var(--ink); border-radius:4px; padding:6px 10px; font-size:12px; cursor:pointer;}
+  @media (max-width:760px){
+    nav ul{position:absolute; top:100%; left:0; right:0; background:var(--paper-raised); flex-direction:column; gap:0; border-bottom:1px solid var(--line); display:none;}
+    nav ul.open{display:flex;}
+    nav ul li{border-top:1px solid var(--line);}
+    nav ul a{display:block; padding:14px 28px;}
+    .nav-toggle{display:block;}
+  }
+
+  /* ---------- Hero / Badge ---------- */
+  .hero{padding:72px 0 56px;}
+  .eyebrow{font-family:var(--mono); font-size:12.5px; letter-spacing:0.12em; text-transform:uppercase; color:var(--teal); margin-bottom:14px; display:flex; align-items:center; gap:10px;}
+  .eyebrow::before{content:''; width:22px; height:1px; background:var(--teal);}
+  .hero h1{font-family:var(--body); font-weight:700; font-size:clamp(34px,6vw,58px); line-height:1.05; letter-spacing:-0.01em; margin-bottom:16px;}
+  .hero h1 em{font-style:normal; color:var(--amber-deep);}
+  .hero p.lede{font-size:18px; color:var(--ink-soft); max-width:620px; margin-bottom:34px;}
+  .hero-actions{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:48px;}
+  .btn{font-family:var(--mono); font-size:13px; text-decoration:none; padding:12px 20px; border-radius:3px; letter-spacing:0.02em; display:inline-flex; align-items:center; gap:8px; transition:transform .15s, box-shadow .15s;}
+  .btn-primary{background:var(--ink); color:var(--paper-raised);}
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:3px 4px 0 var(--amber);}
+  .btn-ghost{border:1px solid var(--ink); color:var(--ink);}
+  .btn-ghost:hover{transform:translateY(-2px); box-shadow:3px 4px 0 var(--teal);}
+
+  /* Badge card */
+  .badge{
+    background:var(--paper-raised);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:28px 30px;
+    max-width:520px;
+    box-shadow:0 1px 0 var(--line), 0 18px 40px -30px rgba(22,35,58,0.5);
+    position:relative;
+    opacity:0;
+    animation:badgeIn .7s ease forwards .15s;
+  }
+  @keyframes badgeIn{from{opacity:0; transform:translateY(14px) rotate(-1deg);} to{opacity:1; transform:translateY(0) rotate(-1deg);}}
+  .badge::before{
+    content:''; position:absolute; top:-9px; left:36px; width:56px; height:16px;
+    background:var(--line); border-radius:0 0 6px 6px;
+  }
+  .badge-top{display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:20px;}
+  .badge-id{font-family:var(--mono); font-size:11px; color:var(--ink-soft); letter-spacing:0.05em;}
+  .badge-status{font-family:var(--mono); font-size:11px; color:var(--teal); display:flex; align-items:center; gap:6px;}
+  .dot{width:7px; height:7px; border-radius:50%; background:var(--teal); box-shadow:0 0 0 3px rgba(45,106,110,0.18);}
+  .badge-body{display:flex; gap:20px; align-items:center; margin-bottom:18px;}
+  .avatar{
+    width:74px; height:74px; border-radius:50%; flex-shrink:0;
+    background:linear-gradient(150deg, var(--ink), #223252);
+    color:var(--paper-raised); font-family:var(--mono); font-weight:700; font-size:22px;
+    display:flex; align-items:center; justify-content:center; letter-spacing:0.02em;
+    border:3px solid var(--amber);
+  }
+  .badge-name{font-family:var(--body); font-weight:700; font-size:21px; line-height:1.2;}
+  .badge-role{font-family:var(--mono); font-size:12px; color:var(--ink-soft); margin-top:4px;}
+  .badge-tags{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px;}
+  .tag{font-family:var(--mono); font-size:11px; letter-spacing:0.03em; padding:5px 10px; border-radius:20px; border:1px solid var(--line); color:var(--ink-soft); background:rgba(255,255,255,0.5);}
+  .badge .barcode{margin:0;}
+
+  /* ---------- Section shell ---------- */
+  section{padding:64px 0;}
+  .section-head{display:flex; align-items:baseline; gap:16px; margin-bottom:36px;}
+  .section-num{font-family:var(--mono); color:var(--amber-deep); font-size:13px;}
+  h2{font-family:var(--body); font-weight:700; font-size:clamp(24px,3.4vw,32px); letter-spacing:-0.01em;}
+  .rule{height:1px; background:var(--line); flex:1;}
+  .divider{padding:8px 0 0;}
+
+  /* ---------- About ---------- */
+  .about-grid{display:grid; grid-template-columns:1fr 1fr; gap:44px;}
+  @media (max-width:760px){.about-grid{grid-template-columns:1fr;}}
+  .about-card h3{font-family:var(--mono); font-size:13px; text-transform:uppercase; letter-spacing:0.08em; color:var(--teal); margin-bottom:14px;}
+  .about-card p{color:var(--ink-soft); margin-bottom:14px;}
+  .interest-list{display:flex; flex-wrap:wrap; gap:8px; margin-top:16px;}
+
+  /* ---------- Experience timeline ---------- */
+  .timeline{position:relative; padding-left:26px; border-left:2px solid var(--line);}
+  .tl-item{position:relative; padding-bottom:40px;}
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-item::before{
+    content:''; position:absolute; left:-32px; top:4px; width:12px; height:12px;
+    background:var(--paper-raised); border:2px solid var(--amber); border-radius:50%;
+  }
+  .tl-date{font-family:var(--mono); font-size:12px; color:var(--amber-deep); letter-spacing:0.03em; margin-bottom:4px;}
+  .tl-role{font-weight:700; font-size:17px; margin-bottom:4px;}
+  .tl-org{font-family:var(--mono); font-size:12.5px; color:var(--ink-soft); margin-bottom:10px;}
+  .tl-item ul{padding-left:18px; color:var(--ink-soft); font-size:15px;}
+  .tl-item li{margin-bottom:6px;}
+
+  /* ---------- Certs / Education ---------- */
+  .cred-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px;}
+  @media (max-width:760px){.cred-grid{grid-template-columns:1fr 1fr;}}
+  @media (max-width:480px){.cred-grid{grid-template-columns:1fr;}}
+  .cred{border:1px solid var(--line); background:var(--paper-raised); border-radius:6px; padding:16px 18px;}
+  .cred .yr{font-family:var(--mono); font-size:11px; color:var(--teal);}
+  .cred .name{font-weight:600; font-size:14.5px; margin-top:6px;}
+
+  /* ---------- Projects ---------- */
+  .proj-grid{display:grid; grid-template-columns:1fr 1fr; gap:22px;}
+  @media (max-width:760px){.proj-grid{grid-template-columns:1fr;}}
+  .proj-card{
+    background:var(--paper-raised); border:1px solid var(--line); border-radius:8px;
+    padding:24px; display:flex; flex-direction:column; transition:box-shadow .15s, transform .15s;
+  }
+  .proj-card:hover{box-shadow:4px 5px 0 var(--line); transform:translateY(-2px);}
+  .proj-top{display:flex; justify-content:space-between; align-items:flex-start; gap:12px; margin-bottom:10px;}
+  .proj-card h3{font-size:17px; font-weight:700;}
+  .proj-link{font-family:var(--mono); font-size:11px; color:var(--teal); text-decoration:none; white-space:nowrap;}
+  .proj-card p{color:var(--ink-soft); font-size:14.5px; margin-bottom:14px; flex:1;}
+  .stack{display:flex; flex-wrap:wrap; gap:6px;}
+  .stack span{font-family:var(--mono); font-size:10.5px; color:var(--ink-soft); border:1px solid var(--line); padding:3px 8px; border-radius:4px;}
+  .more-repos{margin-top:24px; padding-top:20px; border-top:1px dashed var(--line);}
+  .more-repos .label{font-family:var(--mono); font-size:12px; color:var(--ink-soft); margin-bottom:12px;}
+  .repo-strip{display:flex; flex-wrap:wrap; gap:10px;}
+  .repo-strip a{font-family:var(--mono); font-size:12px; text-decoration:none; padding:7px 12px; border:1px solid var(--line); border-radius:4px; color:var(--ink); background:var(--paper-raised); transition:border-color .15s;}
+  .repo-strip a:hover{border-color:var(--amber);}
+
+  /* ---------- Blog ---------- */
+  .blog-card{
+    background:var(--paper-raised); border:1px solid var(--line); border-radius:8px; padding:32px;
+    display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap;
+  }
+  .blog-card p{color:var(--ink-soft); max-width:520px;}
+
+  /* ---------- Resume ---------- */
+  .resume-card{
+    background:var(--ink); color:var(--paper-raised); border-radius:10px; padding:40px;
+    display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap;
+  }
+  .resume-card h3{font-size:22px; font-weight:700; margin-bottom:8px;}
+  .resume-card p{color:#AEB8CC; max-width:440px; font-size:14.5px;}
+  .resume-card .btn-primary{background:var(--amber); color:var(--ink);}
+  .resume-card .btn-primary:hover{box-shadow:3px 4px 0 var(--paper-raised);}
+
+  /* ---------- Contact ---------- */
+  .contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:22px;}
+  @media (max-width:760px){.contact-grid{grid-template-columns:1fr;}}
+  .contact-card{border:1px solid var(--line); background:var(--paper-raised); border-radius:8px; padding:22px; display:flex; align-items:center; justify-content:space-between; gap:14px;}
+  .contact-card .k{font-family:var(--mono); font-size:11px; text-transform:uppercase; letter-spacing:0.06em; color:var(--ink-soft); margin-bottom:6px;}
+  .contact-card .v{font-weight:600; font-size:15px; word-break:break-word;}
+  .copy-btn{font-family:var(--mono); font-size:11px; border:1px solid var(--line); background:none; border-radius:4px; padding:8px 10px; cursor:pointer; flex-shrink:0;}
+  .copy-btn:hover{border-color:var(--teal);}
+
+  footer{padding:40px 0 60px; text-align:center;}
+  footer p{font-family:var(--mono); font-size:12px; color:var(--ink-soft);}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="logo">D.SANTIAGO<span>_</span></div>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">MENU</button>
+    <nav>
+      <ul id="navList">
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#resume">Resume</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap" style="display:grid; grid-template-columns:1.1fr 0.9fr; gap:40px; align-items:center;">
+      <div>
+        <div class="eyebrow">Northampton, PA · Open to Cyber Opportunities</div>
+        <h1>Ten years running<br>operations. Now<br>securing them <em>too.</em></h1>
+        <p class="lede">I'm Daniel Santiago — a cybersecurity professional built on a decade of enterprise operations experience, now focused on identity &amp; access management, cloud security, and Zero Trust architecture.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#projects">View Projects →</a>
+          <a class="btn btn-ghost" href="Daniel_Santiago_Resume.pdf" target="_blank" rel="noopener">Download Résumé</a>
+        </div>
+      </div>
+      <div class="badge">
+        <div class="badge-top">
+          <div class="badge-id">ID // SEC-2026-0091</div>
+          <div class="badge-status"><span class="dot"></span>ACCESS: GRANTED</div>
+        </div>
+        <div class="badge-body">
+          <div class="avatar">DS</div>
+          <div>
+            <div class="badge-name">Daniel Santiago</div>
+            <div class="badge-role">Continuous Skills &amp; Development Leader</div>
+          </div>
+        </div>
+        <div class="badge-tags">
+          <span class="tag">IAM</span>
+          <span class="tag">ZERO TRUST</span>
+          <span class="tag">CLOUD SEC</span>
+          <span class="tag">GRC</span>
+        </div>
+        <div class="barcode" aria-hidden="true">
+          <span style="height:14px"></span><span style="height:20px"></span><span style="height:10px"></span><span style="height:18px"></span><span style="height:8px"></span><span style="height:22px"></span><span style="height:12px"></span><span style="height:16px"></span><span style="height:9px"></span><span style="height:20px"></span><span style="height:13px"></span><span style="height:17px"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="wrap">
+      <div class="section-head"><span class="section-num">01</span><h2>About</h2><div class="rule"></div></div>
+      <div class="about-grid">
+        <div class="about-card">
+          <h3>The Pivot</h3>
+          <p>I spent over 10 years inside the operations engine of a Fortune 5 company — running logistics, leading incident response for enterprise "war rooms," and hardening access controls across 500+ operational roles long before I had a formal title for it. Somewhere in there I realized I wasn't just running operations, I was securing them.</p>
+          <p>That realization turned into a B.S. in Cybersecurity (3.91 GPA, Summa Cum Laude) with a Data Analytics concentration, a CompTIA Security+ certification, and a growing stack of hands-on IAM and cloud security work. I'm now channeling a decade of operational discipline into identity management, access governance, and Zero Trust design.</p>
+        </div>
+        <div class="about-card">
+          <h3>Off the Clock</h3>
+          <p>I'm a new dad, and most of my "why" these days comes from watching my daughter experience things for the first time. When I'm not deep in a security rabbit hole (my wife has instituted the occasional "no more cybersecurity talk this week" rule), you'll find me chasing new towns, new food, and new experiences.</p>
+          <p>I co-founded <strong>Lehigh Valley Rent-a-Chef</strong>, used to compete with a powerlifting group, snowboard, and ride motorcycle. I also spent time doing equine therapy with my own horse, Maverick, working with clients facing neurological deficiencies.</p>
+          <div class="interest-list">
+            <span class="tag">Powerlifting</span>
+            <span class="tag">Snowboarding</span>
+            <span class="tag">Motorcycling</span>
+            <span class="tag">Equine Therapy</span>
+            <span class="tag">New Dad</span>
+            <span class="tag">Rent-a-Chef Co-Founder</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap divider"><div class="barcode"><span style="height:10px"></span><span style="height:16px"></span><span style="height:8px"></span><span style="height:20px"></span><span style="height:12px"></span><span style="height:18px"></span><span style="height:9px"></span><span style="height:14px"></span></div></div>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="wrap">
+      <div class="section-head"><span class="section-num">02</span><h2>Experience</h2><div class="rule"></div></div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-date">APR 2023 — PRESENT</div>
+          <div class="tl-role">Continuous Skills &amp; Development Leader</div>
+          <div class="tl-org">Walmart — Bethlehem, PA</div>
+          <ul>
+            <li>Architected a 3-tier access control standard (testing, validation, certification) before granting production access — reducing unauthorized access risk across 500+ operational roles.</li>
+            <li>Served as security SME on an enterprise system migration, coordinating change-management approval across legal, IT, and operations with zero data integrity incidents.</li>
+            <li>Authored 20+ network-wide security procedures aligned to NIST CSF, establishing repeatable governance documentation.</li>
+            <li>Built role-based training matrices that cut facility turnover from 117% to under 10%.</li>
+          </ul>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">JAN 2016 — PRESENT</div>
+          <div class="tl-role">Systems Operator</div>
+          <div class="tl-org">Walmart — Bethlehem, PA</div>
+          <ul>
+            <li>Led incident triage for enterprise "war room" events affecting 1,000+ users, partnering with engineering to reduce MTTR.</li>
+            <li>Migrated 300+ roles from manual provisioning to AD group-based RBAC, enforcing least privilege and eliminating over-provisioning.</li>
+            <li>Hardened 200+ endpoints by restricting admin privileges and limiting access to approved applications.</li>
+            <li>Built security dashboards from database metrics to give leadership visibility into compliance and anomaly trends.</li>
+          </ul>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">JAN 2014 — MAR 2023</div>
+          <div class="tl-role">Area Manager / Shipping Lead</div>
+          <div class="tl-org">Walmart — Bethlehem, PA</div>
+          <ul>
+            <li>Managed logistics for teams of 30+, enforcing SLA and DOT/hazmat compliance through standardized SOPs and audits.</li>
+            <li>Primary escalation contact for high-priority disruptions — skills directly transferable to security incident response.</li>
+            <li>Led Kaizen process-improvement initiatives that doubled throughput (200 → 400 units/shift).</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CREDENTIALS -->
+  <section id="credentials">
+    <div class="wrap">
+      <div class="section-head"><span class="section-num">03</span><h2>Certifications &amp; Education</h2><div class="rule"></div></div>
+      <div class="cred-grid">
+        <div class="cred"><div class="yr">2026</div><div class="name">B.S. Cybersecurity — SNHU, 3.91 GPA, Summa Cum Laude</div></div>
+        <div class="cred"><div class="yr">2026</div><div class="name">CompTIA Security+ (SY0-701)</div></div>
+        <div class="cred"><div class="yr">2025</div><div class="name">Google Cloud Security Professional</div></div>
+        <div class="cred"><div class="yr">2025</div><div class="name">Palo Alto Networks Cybersecurity Professional</div></div>
+        <div class="cred"><div class="yr">2025</div><div class="name">PMI Risk Management (PMI-RMP) — Coursework</div></div>
+        <div class="cred"><div class="yr">In Progress</div><div class="name">Microsoft SC-500 Cloud &amp; AI Security</div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap divider"><div class="barcode"><span style="height:12px"></span><span style="height:18px"></span><span style="height:9px"></span><span style="height:16px"></span><span style="height:20px"></span><span style="height:8px"></span><span style="height:14px"></span><span style="height:19px"></span></div></div>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="wrap">
+      <div class="section-head"><span class="section-num">04</span><h2>Projects</h2><div class="rule"></div></div>
+      <div class="proj-grid">
+        <div class="proj-card">
+          <div class="proj-top">
+            <h3>Security Findings Translator</h3>
+            <a class="proj-link" href="https://github.com/DanielSantiagoSec/security-findings-translator" target="_blank" rel="noopener">GitHub →</a>
+          </div>
+          <p>An AI-powered tool that parses AWS GuardDuty, Security Hub, and Nessus findings and translates them into audience-specific language for 7 stakeholder types. Built a composite risk-scoring engine (CVSS + EPSS + CISA KEV) and caught a scoring bug that under-rated a Log4Shell-severity finding.</p>
+          <div class="stack"><span>Python</span><span>FastAPI</span><span>PostgreSQL</span><span>Docker</span><span>Redis</span></div>
+        </div>
+        <div class="proj-card">
+          <div class="proj-top">
+            <h3>IAM Risk Analysis</h3>
+            <a class="proj-link" href="https://github.com/DanielSantiagoSec/IAM-Risk-Analysis" target="_blank" rel="noopener">GitHub →</a>
+          </div>
+          <p>A strategic security framework for access control (RBAC), risk mitigation, and threat characterization — built to bridge the gap between written policy and real-world protection.</p>
+          <div class="stack"><span>RBAC</span><span>Risk Mgmt</span><span>Documentation</span></div>
+        </div>
+        <div class="proj-card">
+          <div class="proj-top">
+            <h3>Cloud Security Breach Response</h3>
+          </div>
+          <p>Simulated an enterprise cloud breach on Google Cloud Platform (Cymbal Bank), containing it by isolating compromised VMs, revoking public access, and restoring from verified snapshots. Engineered an IAM framework with RBAC, MFA, and Okta/Azure AD SSO for full lifecycle governance.</p>
+          <div class="stack"><span>GCP</span><span>IAM</span><span>Okta</span><span>Azure AD</span></div>
+        </div>
+        <div class="proj-card">
+          <div class="proj-top">
+            <h3>M.O.M. — Text Adventure RPG</h3>
+            <a class="proj-link" href="https://github.com/DanielSantiagoSec/M.O.M.-Text-Adventure-RPG" target="_blank" rel="noopener">GitHub →</a>
+          </div>
+          <p>A short text-adventure game built in Python — a fun side project that shows the problem-solving and logic-building process behind the security work.</p>
+          <div class="stack"><span>Python</span><span>Game Dev</span></div>
+        </div>
+      </div>
+
+      <div class="more-repos">
+        <div class="label">MORE REPOSITORIES //</div>
+        <div class="repo-strip">
+          <a href="https://github.com/DanielSantiagoSec/Network-Infrastructure-Project" target="_blank" rel="noopener">Network Infrastructure Project</a>
+          <a href="https://github.com/DanielSantiagoSec/Network-Access-Control-Lab" target="_blank" rel="noopener">Network Access Control Lab</a>
+          <a href="https://github.com/DanielSantiagoSec/Data-Retention-Cloud-Migration-Strategy" target="_blank" rel="noopener">Data Retention &amp; Cloud Migration</a>
+          <a href="https://github.com/DanielSantiagoSec/Network-Security-Architecture-Analysis" target="_blank" rel="noopener">Network Security Architecture</a>
+          <a href="https://github.com/DanielSantiagoSec/Networking-Security-Series-Projects" target="_blank" rel="noopener">Networking &amp; Security Series</a>
+          <a href="https://github.com/DanielSantiagoSec/TryHackMe-Labs" target="_blank" rel="noopener">TryHackMe Labs</a>
+          <a href="https://github.com/DanielSantiagoSec/2025-NSA-Codebreaker-Challenge" target="_blank" rel="noopener">2025 NSA Codebreaker Challenge</a>
+          <a href="https://github.com/DanielSantiagoSec?tab=repositories" target="_blank" rel="noopener">View all on GitHub →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap divider"><div class="barcode"><span style="height:16px"></span><span style="height:9px"></span><span style="height:20px"></span><span style="height:12px"></span><span style="height:18px"></span><span style="height:8px"></span><span style="height:14px"></span></div></div>
+
+  <!-- BLOG -->
+  <section id="blog">
+    <div class="wrap">
+      <div class="section-head"><span class="section-num">05</span><h2>Blog</h2><div class="rule"></div></div>
+      <div class="blog-card">
+        <div>
+          <div class="eyebrow" style="margin-bottom:8px;">Writing on Medium</div>
+          <p>I write about IAM, cloud security, and what it's actually like breaking into cybersecurity from an operations background. <em>Add your Medium URL below to make this live.</em></p>
+        </div>
+        <!-- TODO: replace # with your real Medium profile URL -->
+        <a class="btn btn-primary" href="#" target="_blank" rel="noopener">Read on Medium →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESUME -->
+  <section id="resume">
+    <div class="wrap">
+      <div class="resume-card">
+        <div>
+          <h3>Want the full breakdown?</h3>
+          <p>Download my résumé for the complete work history, technical skill set, and certifications.</p>
+        </div>
+        <a class="btn btn-primary" href="Daniel_Santiago_Resume.pdf" target="_blank" rel="noopener">Download PDF ↓</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="section-head"><span class="section-num">06</span><h2>Contact</h2><div class="rule"></div></div>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <div>
+            <div class="k">Email</div>
+            <div class="v" id="emailVal">danny9635@live.com</div>
+          </div>
+          <button class="copy-btn" onclick="copyText('emailVal', this)">Copy</button>
+        </div>
+        <div class="contact-card">
+          <div>
+            <div class="k">GitHub</div>
+            <div class="v">DanielSantiagoSec</div>
+          </div>
+          <a class="copy-btn" href="https://github.com/DanielSantiagoSec" target="_blank" rel="noopener" style="text-decoration:none; text-align:center;">Visit</a>
+        </div>
+        <div class="contact-card">
+          <div>
+            <div class="k">LinkedIn</div>
+            <div class="v">Add your profile URL</div>
+          </div>
+          <!-- TODO: replace # with your real LinkedIn URL -->
+          <a class="copy-btn" href="#" target="_blank" rel="noopener" style="text-decoration:none; text-align:center;">Visit</a>
+        </div>
+        <div class="contact-card">
+          <div>
+            <div class="k">Location</div>
+            <div class="v">Northampton, PA</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>&copy; 2026 Daniel Santiago — Built with intent, secured by habit.</p>
+</footer>
+
+<script>
+  const navToggle = document.getElementById('navToggle');
+  const navList = document.getElementById('navList');
+  navToggle.addEventListener('click', () => {
+    const open = navList.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', open);
+  });
+  navList.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navList.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+  }));
+
+  function copyText(id, btn){
+    const text = document.getElementById(id).innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      const original = btn.innerText;
+      btn.innerText = 'Copied';
+      setTimeout(() => btn.innerText = original, 1500);
+    });
+  }
+</script>
+
+</body>
+</html>
