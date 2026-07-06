@@ -76,6 +76,7 @@
   nav a{font-family:var(--mono); font-size:12.5px; text-decoration:none; text-transform:uppercase; letter-spacing:0.06em; color:var(--ink-soft); transition:color .15s; padding-bottom:3px; border-bottom:2px solid transparent;}
   nav a:hover{color:var(--ink);}
   nav a.active{color:var(--ink); border-bottom-color:var(--amber);}
+  .nav-left{display:flex; align-items:center; gap:12px;}
   .nav-right{display:flex; align-items:center; gap:10px;}
   .theme-toggle{font-family:var(--mono); background:none; border:1px solid var(--line); border-radius:20px; padding:6px 12px; font-size:13px; cursor:pointer; color:var(--ink); transition:border-color .15s;}
   .theme-toggle:hover{border-color:var(--amber);}
@@ -272,9 +273,11 @@
 
 <header class="nav">
   <div class="nav-inner">
-    <div class="logo">D.SANTIAGO<span>_</span></div>
-    <div class="nav-right">
+    <div class="nav-left">
+      <div class="logo">D.SANTIAGO<span>_</span></div>
       <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">🌙</button>
+    </div>
+    <div class="nav-right">
       <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">MENU</button>
     </div>
     <nav>
