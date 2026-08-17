@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Security Reading List | Daniel Santiago</title>
+<meta name="description" content="Daniel Santiago's cybersecurity book reviews — practitioner takeaways from foundational and modern security reading.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --deep: #16233A;
+    --on-deep: #F5F6F2;
+    --amber: #C08A2E;
+    --amber-deep: #8F6A20;
+    --teal: #2D6A6E;
+    --mono: 'JetBrains Mono', monospace;
+    --body: 'IBM Plex Sans', sans-serif;
+
+    --paper: #1B2430;
+    --paper-raised: #232E3D;
+    --ink: #ECEEE7;
+    --ink-soft: #AEB7C2;
+    --line: #3A4552;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--body);
+    line-height:1.6;
+    padding:0 0 60px;
+  }
+  a{color:inherit;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:860px; margin:0 auto; padding:0 24px;}
+
+  .top-bar{border-bottom:1px solid var(--line); padding:20px 0; margin-bottom:40px;}
+  .back-link{font-family:var(--mono); font-size:12.5px; color:var(--ink-soft); text-decoration:none; display:inline-flex; align-items:center; gap:6px; transition:color .15s;}
+  .back-link:hover{color:var(--amber);}
+
+  .header{margin-bottom:40px;}
+  .eyebrow{font-family:var(--mono); font-size:12.5px; letter-spacing:0.12em; text-transform:uppercase; color:var(--teal); margin-bottom:12px; display:flex; align-items:center; gap:10px;}
+  .eyebrow::before{content:''; width:22px; height:1px; background:var(--teal);}
+  h1{font-size:clamp(26px,4vw,36px); font-weight:700; margin-bottom:14px; line-height:1.2;}
+  .lede{font-size:16px; color:var(--ink-soft); max-width:600px; line-height:1.7;}
+
+  .book-grid{display:grid; grid-template-columns:1fr; gap:16px;}
+
+  .book-card{
+    display:flex; gap:20px; align-items:center;
+    background:var(--paper-raised); border:1px solid var(--line); border-radius:8px;
+    padding:18px 20px; text-decoration:none; color:var(--ink);
+    transition:box-shadow .15s, transform .15s;
+  }
+  .book-card:hover{box-shadow:4px 5px 0 var(--line); transform:translateY(-2px);}
+  .book-card img{width:64px; border-radius:3px; border:2px solid var(--amber); flex-shrink:0;}
+  .book-card-body{flex:1; min-width:0;}
+  .book-card-title{font-size:16.5px; font-weight:700; margin-bottom:4px;}
+  .book-card-author{font-family:var(--mono); font-size:12px; color:var(--ink-soft); margin-bottom:8px;}
+  .book-card-take{font-size:14px; color:var(--ink-soft); line-height:1.5;}
+  .book-card-arrow{font-family:var(--mono); font-size:13px; color:var(--teal); flex-shrink:0;}
+
+  .empty-note{
+    background:var(--paper-raised); border:1px dashed var(--line); border-radius:8px;
+    padding:24px; text-align:center; color:var(--ink-soft); font-size:14px; font-family:var(--mono);
+    margin-top:8px;
+  }
+</style>
+</head>
+<body>
+  <div class="top-bar">
+    <div class="wrap">
+      <a class="back-link" href="/">← Daniel Santiago — Portfolio</a>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="header">
+      <div class="eyebrow">Security Reading List</div>
+      <h1>Books worth a practitioner's time.</h1>
+      <p class="lede">Reviews written from a working security perspective — what each book actually teaches you about the job, not just a summary of the plot.</p>
+    </div>
+
+    <div class="book-grid">
+      <a class="book-card" href="/books/the-cuckoos-egg/">
+        <img src="https://covers.openlibrary.org/b/id/7880307-M.jpg" alt="The Cuckoo's Egg book cover">
+        <div class="book-card-body">
+          <div class="book-card-title">The Cuckoo's Egg</div>
+          <div class="book-card-author">Cliff Stoll · 1989 · Nonfiction</div>
+          <div class="book-card-take">A $0.75 accounting error leads to the first documented case of state-sponsored hacking — and a hands-on lesson in threat hunting before the term existed.</div>
+        </div>
+        <div class="book-card-arrow">Read My Review →</div>
+      </a>
+    </div>
+
+    <div class="empty-note">More reviews coming as I read them — next up: TBD</div>
+  </div>
+</body>
+</html>
