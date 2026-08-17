@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Cuckoo's Egg — Book Review | Daniel Santiago</title>
+<meta name="description" content="Daniel Santiago's practitioner take on The Cuckoo's Egg by Cliff Stoll.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --deep: #16233A;
+    --on-deep: #F5F6F2;
+    --amber: #C08A2E;
+    --amber-deep: #8F6A20;
+    --teal: #2D6A6E;
+    --mono: 'JetBrains Mono', monospace;
+    --body: 'IBM Plex Sans', sans-serif;
+
+    --paper: #1B2430;
+    --paper-raised: #232E3D;
+    --ink: #ECEEE7;
+    --ink-soft: #AEB7C2;
+    --line: #3A4552;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--body);
+    line-height:1.7;
+    padding:0 0 60px;
+  }
+  a{color:inherit;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:680px; margin:0 auto; padding:0 24px;}
+
+  .top-bar{border-bottom:1px solid var(--line); padding:20px 0; margin-bottom:40px;}
+  .back-link{font-family:var(--mono); font-size:12.5px; color:var(--ink-soft); text-decoration:none; display:inline-flex; align-items:center; gap:6px; transition:color .15s;}
+  .back-link:hover{color:var(--amber);}
+
+  .book-header{display:flex; gap:24px; align-items:flex-start; margin-bottom:32px;}
+  .book-cover img{width:110px; border-radius:4px; border:2px solid var(--amber); box-shadow:0 12px 30px -18px rgba(0,0,0,0.6); flex-shrink:0;}
+  .book-title{font-size:24px; font-weight:700; margin-bottom:6px; line-height:1.25;}
+  .book-author{font-family:var(--mono); font-size:13px; color:var(--ink-soft); margin-bottom:14px;}
+  .tags{display:flex; flex-wrap:wrap; gap:7px;}
+  .tag{font-family:var(--mono); font-size:11px; letter-spacing:0.03em; padding:5px 10px; border-radius:20px; border:1px solid var(--line); color:var(--ink-soft);}
+
+  .why-card{background:var(--paper-raised); border:1px solid var(--line); border-left:3px solid var(--amber); border-radius:8px; padding:18px 22px; margin-bottom:32px;}
+  .why-label{font-family:var(--mono); font-size:11px; text-transform:uppercase; letter-spacing:0.08em; color:var(--amber); margin-bottom:8px;}
+  .why-text{font-size:14.5px; color:var(--ink-soft); line-height:1.7;}
+
+  h2{font-family:var(--mono); font-size:12.5px; text-transform:uppercase; letter-spacing:0.08em; color:var(--teal); margin-bottom:16px; margin-top:36px;}
+  p{font-size:16px; color:var(--ink); margin-bottom:20px; line-height:1.8;}
+
+  .takeaways{background:var(--paper-raised); border:1px solid var(--line); border-radius:8px; padding:24px; margin:32px 0;}
+  .takeaway{display:flex; gap:14px; margin-bottom:18px; align-items:flex-start;}
+  .takeaway:last-child{margin-bottom:0;}
+  .t-icon{width:30px; min-width:30px; height:30px; background:rgba(192,138,46,0.12); border:1px solid var(--line); border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:14px;}
+  .t-text{font-size:14.5px; color:var(--ink-soft); line-height:1.65;}
+  .t-text strong{color:var(--ink); font-weight:600;}
+
+  .verdict{background:var(--paper-raised); border:1px solid var(--line); border-left:3px solid var(--teal); border-radius:8px; padding:20px 22px; margin:32px 0;}
+  .verdict-label{font-family:var(--mono); font-size:11px; text-transform:uppercase; letter-spacing:0.08em; color:var(--teal); margin-bottom:8px;}
+  .verdict p{color:var(--ink); margin-bottom:0; font-size:15.5px;}
+
+  .find-it{display:flex; gap:12px; flex-wrap:wrap; margin-top:36px; padding-top:28px; border-top:1px solid var(--line); align-items:center;}
+  .btn{font-family:var(--mono); font-size:13px; text-decoration:none; padding:11px 18px; border-radius:3px; letter-spacing:0.02em; display:inline-flex; align-items:center; gap:8px; transition:transform .15s, box-shadow .15s; border:1px solid transparent;}
+  .btn-primary{background:var(--amber); color:var(--deep); font-weight:600;}
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:3px 4px 0 var(--teal);}
+  .hoopla-note{font-family:var(--mono); font-size:12.5px; color:var(--ink-soft); display:inline-flex; align-items:center; padding:9px 14px; background:var(--paper-raised); border:1px solid var(--line); border-radius:6px;}
+  .hoopla-note strong{color:var(--ink);}
+
+  .filed-under{font-family:var(--mono); font-size:11px; color:var(--ink-soft); margin-top:36px; padding-top:16px; border-top:1px solid var(--line);}
+</style>
+</head>
+<body>
+  <div class="top-bar">
+    <div class="wrap">
+      <a class="back-link" href="/">← Daniel Santiago — Portfolio</a>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="book-header">
+      <div class="book-cover">
+        <img src="https://covers.openlibrary.org/b/id/7880307-L.jpg" alt="The Cuckoo's Egg book cover">
+      </div>
+      <div class="book-meta">
+        <p class="book-title">The Cuckoo's Egg</p>
+        <p class="book-author">Cliff Stoll · 1989 · Nonfiction</p>
+        <div class="tags">
+          <span class="tag">Threat hunting</span>
+          <span class="tag">True story</span>
+          <span class="tag">Cold War</span>
+          <span class="tag">APT</span>
+          <span class="tag">Honeypot</span>
+          <span class="tag">Nation-state</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="why-card">
+      <div class="why-label">Why I read it</div>
+      <p class="why-text">This one came up repeatedly across multiple people in my security community — Simply Cyber, BSides, Antisyphon. When the same book keeps surfacing from practitioners you respect, you stop adding it to the "someday" list. I found it for free on Hoopla through my library — worth checking before you buy.</p>
+    </div>
+
+    <h2>My Take</h2>
+    <p>It starts with a $0.75 accounting discrepancy. The kind of thing most people would chalk up to a rounding error and move on. Cliff Stoll didn't. A systems administrator assigned to look into the discrepancy by his boss, he stumbled into a live threat actor actively prowling through systems at Lawrence Berkeley National Laboratory in 1986 — using compromised machines to dodge expensive long-distance phone charges and pivot toward U.S. military and government networks.</p>
+
+    <p>What makes this book land differently when you're in the security field is that everything Stoll built by hand, we've now automated. The honeypot he constructed out of fake system names, fabricated communications, and fictitious SDI research documents to buy time and keep the hacker engaged? That's threat deception. The log parsing and manual alarm scripts he wrote to track a live actor across his network? That's detection engineering. He was doing all of it without tooling, without a team, and without institutional buy-in — because the FBI at the time only cared about cases above a certain monetary threshold.</p>
+
+    <p>That friction with three-letter agencies is one of the more honest parts of the book. Stoll had to navigate the FBI, NSA, and CIA simultaneously — each with different mandates, different thresholds for what constituted a real threat, and different opinions on whose jurisdiction it fell under. It's the kind of organizational friction that still exists today in a lot of organizations, just with different acronyms.</p>
+
+    <p>The OSINT angle he surfaces is sharp and worth sitting with. The attacker wasn't stealing classified files. He was aggregating unclassified ones — understanding that context and correlation create intelligence value even when no single document is marked sensitive. That's a core principle in how we think about data classification and the mosaic effect, and it was playing out in real time in 1986.</p>
+
+    <div class="takeaways">
+      <h2 style="margin-top:0;">Practitioner Takeaways</h2>
+      <div class="takeaway">
+        <div class="t-icon">🔍</div>
+        <p class="t-text"><strong>Threat hunting starts with an anomaly.</strong> A $0.75 discrepancy nobody else noticed. Following it anyway — that's the mindset. The tools changed. That part didn't.</p>
+      </div>
+      <div class="takeaway">
+        <div class="t-icon">🍯</div>
+        <p class="t-text"><strong>Honeypots are old — and they worked.</strong> Stoll fabricated fake documents and system names to delay and study a live actor. The deception principles behind modern honeypots trace directly to this.</p>
+      </div>
+      <div class="takeaway">
+        <div class="t-icon">📡</div>
+        <p class="t-text"><strong>Unclassified doesn't mean unimportant.</strong> Mosaic theory was playing out decades before most of us had the vocabulary for it. Context turns public data into intelligence.</p>
+      </div>
+      <div class="takeaway">
+        <div class="t-icon">🏛️</div>
+        <p class="t-text"><strong>Organizational friction is part of the job.</strong> Navigating agencies with competing mandates and thresholds while running a live investigation alone is a realistic picture of what cross-functional security work looks like.</p>
+      </div>
+      <div class="takeaway">
+        <div class="t-icon">⚡</div>
+        <p class="t-text"><strong>Compensating controls can be physical.</strong> Stoll literally jiggled wires to create signal disruptions when the attacker probed sensitive areas. Lo-fi, effective, and documented. That's a compensating control.</p>
+      </div>
+    </div>
+
+    <div class="verdict">
+      <div class="verdict-label">Bottom Line</div>
+      <p>If you're in this field and haven't read it, read it. If you read it before entering security, read it again — you'll recognize things you missed the first time. Stoll didn't know he was writing a foundational text for a profession that barely existed yet. That's exactly what makes it worth your time.</p>
+    </div>
+
+    <div class="find-it">
+      <a class="btn btn-primary" href="https://www.amazon.com/Cuckoos-Egg-Tracking-Computer-Espionage/dp/1416507787" target="_blank" rel="noopener">Find on Amazon ↗</a>
+      <span class="hoopla-note">Also available free on <strong>Hoopla</strong> — check if your library has access.</span>
+    </div>
+
+    <p class="filed-under">Filed under: Books · Threat Hunting · Security Culture</p>
+  </div>
+</body>
+</html>
