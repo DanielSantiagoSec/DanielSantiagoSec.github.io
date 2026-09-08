@@ -54,17 +54,17 @@
     transition:box-shadow .15s, transform .15s;
   }
   .book-card:hover{box-shadow:4px 5px 0 var(--line); transform:translateY(-2px);}
-  .book-card img{width:64px; border-radius:3px; border:2px solid var(--amber); flex-shrink:0;}
+  .book-card img{width:64px; height:96px; object-fit:cover; border-radius:3px; border:2px solid var(--amber); flex-shrink:0;}
   .book-card-body{flex:1; min-width:0;}
   .book-card-title{font-size:16.5px; font-weight:700; margin-bottom:4px;}
   .book-card-author{font-family:var(--mono); font-size:12px; color:var(--ink-soft); margin-bottom:8px;}
   .book-card-take{font-size:14px; color:var(--ink-soft); line-height:1.5;}
-  .book-card-arrow{font-family:var(--mono); font-size:13px; color:var(--teal); flex-shrink:0;}
+  .book-card-arrow{font-family:var(--mono); font-size:13px; color:var(--teal); flex-shrink:0; white-space:nowrap;}
 
   .empty-note{
     background:var(--paper-raised); border:1px dashed var(--line); border-radius:8px;
     padding:24px; text-align:center; color:var(--ink-soft); font-size:14px; font-family:var(--mono);
-    margin-top:8px;
+    margin-top:16px;
   }
 </style>
 </head>
@@ -83,15 +83,40 @@
     </div>
 
     <div class="book-grid">
-      <a class="book-card" href="/books/the-cuckoos-egg/">
-        <img src="https://covers.openlibrary.org/b/id/7880307-M.jpg" alt="The Cuckoo's Egg book cover">
+
+      <!-- The Cuckoo's Egg -->
+      <a class="book-card" href="/reading/the-cuckoos-egg/">
+        <img src="https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781668048160/the-cuckoos-egg-9781668048160_lg.jpg" alt="The Cuckoo's Egg book cover">
         <div class="book-card-body">
           <div class="book-card-title">The Cuckoo's Egg</div>
           <div class="book-card-author">Cliff Stoll · 1989 · Nonfiction</div>
           <div class="book-card-take">A $0.75 accounting error leads to the first documented case of state-sponsored hacking — and a hands-on lesson in threat hunting before the term existed.</div>
         </div>
-        <div class="book-card-arrow">Read My Review →</div>
+        <div class="book-card-arrow">Read →</div>
       </a>
+
+      <!-- Careless People -->
+      <a class="book-card" href="/reading/careless-people/">
+        <img src="https://mpd-biblio-covers.imgix.net/9781250391230.jpg" alt="Careless People book cover">
+        <div class="book-card-body">
+          <div class="book-card-title">Careless People</div>
+          <div class="book-card-author">Sarah Wynn-Williams · 2025 · Memoir</div>
+          <div class="book-card-take">A former Facebook policy director documents what happens when a platform accumulates global power faster than it develops any framework for using it responsibly.</div>
+        </div>
+        <div class="book-card-arrow">Read →</div>
+      </a>
+
+      <!-- Ghost in the Wires -->
+      <a class="book-card" href="/reading/ghost-in-the-wires/">
+        <img src="https://covers.openlibrary.org/b/isbn/9780316037709-L.jpg" alt="Ghost in the Wires book cover">
+        <div class="book-card-body">
+          <div class="book-card-title">Ghost in the Wires</div>
+          <div class="book-card-author">Kevin Mitnick · 2011 · Memoir</div>
+          <div class="book-card-take">The FBI's most wanted hacker tells his own story — and in doing so, writes the definitive case study on social engineering as the vulnerability that never gets patched.</div>
+        </div>
+        <div class="book-card-arrow">Read →</div>
+      </a>
+
     </div>
 
     <div class="empty-note">More reviews coming as I read them — next up: TBD</div>
