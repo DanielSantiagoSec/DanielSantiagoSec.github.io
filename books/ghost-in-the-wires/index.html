@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ghost in the Wires — Book Review | Daniel Santiago</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --surface2: #22263a;
+      --text: #e8eaf0;
+      --muted: #8b8fa8;
+      --accent: #4ade80;
+      --accent-dim: #1a3a28;
+      --border: #2e3347;
+      --tag-bg: #1e2a3a;
+      --tag-text: #7eb8f5;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      padding: 2rem 1rem;
+    }
+    .container { max-width: 720px; margin: 0 auto; }
+    .back-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 13px; color: var(--muted); text-decoration: none;
+      margin-bottom: 2rem; transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--accent); }
+    .book-header {
+      display: flex; gap: 1.5rem; align-items: flex-start;
+      margin-bottom: 2rem;
+    }
+    .book-meta { flex: 1; }
+    .book-title { font-size: 22px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+    .book-author { font-size: 14px; color: var(--muted); margin-bottom: 12px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+    .tag {
+      font-size: 12px; padding: 3px 10px; border-radius: 20px;
+      background: var(--tag-bg); color: var(--tag-text);
+      border: 1px solid #2a3f5a;
+    }
+    .divider { border: none; border-top: 1px solid var(--border); margin: 1.75rem 0; }
+    .why-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.75rem;
+    }
+    .why-label {
+      font-size: 11px; font-weight: 600; color: var(--accent);
+      text-transform: uppercase; letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+    .why-text { font-size: 14px; color: var(--muted); line-height: 1.65; }
+    h2 { font-size: 15px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 10px; }
+    p { font-size: 15px; color: var(--text); margin-bottom: 1.25rem; line-height: 1.75; }
+    .tribute-note {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid #a78bfa;
+      border-radius: 8px;
+      padding: 0.85rem 1.25rem;
+      margin-bottom: 1.75rem;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .tribute-note strong { color: var(--text); }
+    .takeaways {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem;
+      margin: 1.75rem 0;
+    }
+    .takeaway {
+      display: flex; gap: 12px; margin-bottom: 14px; align-items: flex-start;
+    }
+    .takeaway:last-child { margin-bottom: 0; }
+    .t-icon {
+      width: 28px; min-width: 28px; height: 28px;
+      background: var(--accent-dim); border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px;
+    }
+    .t-text { font-size: 14px; color: var(--muted); line-height: 1.6; }
+    .t-text strong { color: var(--text); font-weight: 600; }
+    .verdict {
+      background: var(--accent-dim);
+      border: 1px solid #2a5a3a;
+      border-radius: 10px;
+      padding: 1.25rem;
+      margin: 1.75rem 0;
+    }
+    .verdict-label { font-size: 11px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+    .verdict p { color: var(--text); margin-bottom: 0; }
+    .find-it {
+      display: flex; gap: 10px; flex-wrap: wrap; align-items: center;
+      margin-top: 1.75rem; padding-top: 1.75rem;
+      border-top: 1px solid var(--border);
+    }
+    .find-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 8px 16px; border-radius: 8px;
+      font-size: 13px; font-weight: 500; text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .find-btn:hover { opacity: 0.8; }
+    .btn-primary { background: var(--accent); color: #0f1117; }
+    .hoopla-note {
+      font-size: 13px; color: var(--muted);
+      display: flex; align-items: center; padding: 8px 12px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+    .hoopla-note strong { color: var(--text); margin: 0 2px; }
+    .reading-category {
+      display: inline-block;
+      font-size: 11px; color: var(--muted);
+      margin-top: 2rem; padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a class="back-link" href="/reading">&#8592; Reading list</a>
+
+    <div class="book-header">
+      <div class="book-cover">
+        <img
+          src="https://covers.openlibrary.org/b/isbn/9780316037709-L.jpg"
+          alt="Ghost in the Wires book cover"
+          style="width:80px;height:120px;object-fit:cover;border-radius:3px 8px 8px 3px;display:block;"
+          onerror="this.style.display='none'"
+        />
+      </div>
+      <div class="book-meta">
+        <p class="book-title">Ghost in the Wires</p>
+        <p class="book-author">Kevin Mitnick &nbsp;·&nbsp; 2011 &nbsp;·&nbsp; Memoir / Nonfiction</p>
+        <div class="tags">
+          <span class="tag">Social engineering</span>
+          <span class="tag">True story</span>
+          <span class="tag">Phone phreaking</span>
+          <span class="tag">FBI</span>
+          <span class="tag">Gray hat</span>
+          <span class="tag">Penetration testing</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tribute-note">
+      <strong>Kevin Mitnick passed away in July 2023.</strong> He left behind four books, a penetration testing firm, and a field he helped define. This review is written with that weight in mind.
+    </div>
+
+    <div class="why-card">
+      <p class="why-label">Why I read it</p>
+      <p class="why-text">Mitnick's name comes up constantly in security circles — as a cautionary tale, as a legend, as the person who made the FBI take hacking seriously before most people knew what hacking was. Reading his own account of it felt like going to the primary source. Found it on Hoopla through my library — worth checking before you buy.</p>
+    </div>
+
+    <h2>My take</h2>
+    <p>Kevin Mitnick was not hacking for money. He was not working for a foreign government or running ransomware. He was doing it because he could — because the puzzle of getting into a system that wasn't supposed to let him in was its own reward. That distinction matters for how you read this book, and it matters for how the field thinks about the difference between curiosity and criminality.</p>
+
+    <p>The social engineering thread is what makes Ghost in the Wires essential reading beyond the technical details. Mitnick didn't rely primarily on exploiting code. He exploited people — their helpfulness, their assumption of legitimacy, their reluctance to challenge someone who sounded like they belonged. He would call developers at phone companies and walk them through handing over source code, IMEI numbers, proprietary chip configurations, simply by sounding like he was supposed to have it. No zero-day required. Just a phone call and a convincing story.</p>
+
+    <p>The Motorola chapter is a good example. A new phone was released — smaller than anything on the market at the time — and Mitnick wanted the source code. He social engineered his way to it through a chain of calls to people who each thought they were helping a colleague. When he realized he needed a compiler to make use of what he had, he pivoted to a Japanese hacker named Tsutomu Shimomura — who ultimately worked with the FBI and became the person whose investigation led to Mitnick's arrest. There's something almost cinematic about it: the tool he reached for to go deeper became the thread that unraveled everything.</p>
+
+    <p>The identity piece is just as striking. Mitnick understood that physical identity is just another system with vulnerabilities. He accessed South Dakota's records to obtain blank birth certificates, learned that the FBI used identities of deceased infants to create cover — and applied the same logic to hide himself. He lived in Colorado for a year under a false name, constantly monitoring law enforcement communications to stay ahead of the investigation. He was running an OPSEC operation against the FBI in real time, using the same social engineering principles on physical systems that he used on digital ones.</p>
+
+    <p>What the book gives you that most technical writing doesn't is the human context. Mitnick was close to his mother and grandmother throughout his time on the run — calling them, finding ways to see them, carrying that weight alongside the paranoia of being hunted. He wasn't a character from a thriller. He was a person who got very good at one thing and couldn't stop doing it, even when the consequences kept escalating.</p>
+
+    <p>He eventually served about five years in federal prison, followed by supervised release that initially barred him from touching a computer. The first machine he used after that restriction lifted was given to him by Steve Wozniak. He went on to found Mitnick Security Consulting LLC, became one of the most sought-after penetration testers in the world, consulted for governments and corporations including the NSA, and became the person news networks called when they needed someone to explain how a hack actually worked. The arc from most wanted to most trusted is not ironic. It's exactly how the field works when it's working correctly.</p>
+
+    <div class="takeaways">
+      <h2 style="margin-bottom:16px;">Practitioner takeaways</h2>
+      <div class="takeaway">
+        <div class="t-icon">🎭</div>
+        <p class="t-text"><strong>Social engineering is the vulnerability that doesn't get patched.</strong> Mitnick bypassed sophisticated technical systems repeatedly — not by breaking the code, but by calling someone and asking. Human trust is the widest attack surface in any organization.</p>
+      </div>
+      <div class="takeaway">
+        <div class="t-icon">📞</div>
+        <p class="t-text"><strong>Phone phreaking was the original credential abuse.</strong> Manipulating phone network infrastructure to generate fake ESN numbers and redirect billing is the 1980s version of identity-based attacks. The vector changed. The concept didn't.</p>
+      </div>
+      <div class="takeaway">
+        <div class="t-icon">🪪</div>
+        <p class="t-text"><strong>Physical identity is a system with exploits.</strong> Mitnick's use of deceased infant identities and state records to create cover identities is a direct parallel to modern identity fraud. Birth certificate registries are an attack surface.</p>
+      </div>
+      <div class="takeaway">
+        <div class="t-icon">🔄</div>
+        <p class="t-text"><strong>Gray hat experience built the penetration testing profession.</strong> Mitnick's post-prison career is part of why ethical hacking exists as a legitimate discipline. Understanding how an attacker thinks — from someone who was actually the attacker — has genuine value.</p>
+      </div>
+      <div class="takeaway">
+        <div class="t-icon">👁️</div>
+        <p class="t-text"><strong>OPSEC works both ways.</strong> Mitnick monitored law enforcement communications to track the investigation closing in on him. The same situational awareness that defenders need is what kept him ahead of the FBI for years.</p>
+      </div>
+    </div>
+
+    <div class="verdict">
+      <p class="verdict-label">Bottom line</p>
+      <p>Mitnick wrote this book after years of being legally silenced. Read it as the primary source it is — from someone who understood social engineering not as a concept but as a practice he lived inside of for decades. The field he helped create outlasted everything the government tried to use to contain him. That's worth something.</p>
+    </div>
+
+    <div class="find-it">
+      <a class="find-btn btn-primary" href="https://www.amazon.com/Ghost-Wires-Adventures-Worlds-Wanted/dp/0316037702" target="_blank" rel="noopener">Find on Amazon &#x2197;</a>
+      <span class="hoopla-note">Also available free on <strong>Hoopla</strong> — check if your library has access.</span>
+    </div>
+
+    <p class="reading-category">Filed under: Books &nbsp;·&nbsp; Social engineering &nbsp;·&nbsp; Security culture &nbsp;·&nbsp; Penetration testing</p>
+  </div>
+</body>
+</html>
