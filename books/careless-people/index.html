@@ -1,69 +1,227 @@
-# What Facebook Taught One Woman About Power — And What It Should Teach the Rest of Us
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Careless People — Book Review | Daniel Santiago</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --surface2: #22263a;
+      --text: #e8eaf0;
+      --muted: #8b8fa8;
+      --accent: #4ade80;
+      --accent-dim: #1a3a28;
+      --border: #2e3347;
+      --tag-bg: #1e2a3a;
+      --tag-text: #7eb8f5;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      padding: 2rem 1rem;
+    }
+    .container { max-width: 720px; margin: 0 auto; }
+    .back-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 13px; color: var(--muted); text-decoration: none;
+      margin-bottom: 2rem;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--accent); }
 
-**Careless People by Sarah Wynn-Williams | Practitioner Review**
+    .book-header {
+      display: flex; gap: 1.5rem; align-items: flex-start;
+      margin-bottom: 2rem;
+    }
+    .book-meta { flex: 1; }
+    .book-title { font-size: 22px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+    .book-author { font-size: 14px; color: var(--muted); margin-bottom: 12px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+    .tag {
+      font-size: 12px; padding: 3px 10px; border-radius: 20px;
+      background: var(--tag-bg); color: var(--tag-text);
+      border: 1px solid #2a3f5a;
+    }
 
----
+    .divider { border: none; border-top: 1px solid var(--border); margin: 1.75rem 0; }
 
-Meta tried to legally block this book from being promoted. The author was ordered by an arbitrator to stop speaking about it publicly. The publisher refused to pull it. The internet found out. Careless People hit #1 on the New York Times bestseller list, and Wynn-Williams was eventually invited to testify before the U.S. Senate.
+    .why-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.75rem;
+    }
+    .why-label {
+      font-size: 11px; font-weight: 600; color: var(--accent);
+      text-transform: uppercase; letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+    .why-text { font-size: 14px; color: var(--muted); line-height: 1.65; }
 
-That sequence of events is its own argument for why the book matters. When one of the most powerful companies on the planet tries to silence a former employee's account of what she witnessed, and the response is to make it a bestseller, something is being said about accountability — or the absence of it — that goes beyond any individual chapter of the book.
+    h2 { font-size: 15px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 10px; }
+    p { font-size: 15px; color: var(--text); margin-bottom: 1.25rem; line-height: 1.75; }
 
-I read this while I was in the middle of a heavy interview process, picking it up on Hoopla and honestly using it as an anchor to why the work I'm building toward matters. It's the kind of book that earns its weight.
+    .takeaways {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem;
+      margin: 1.75rem 0;
+    }
+    .takeaway {
+      display: flex; gap: 12px; margin-bottom: 14px; align-items: flex-start;
+    }
+    .takeaway:last-child { margin-bottom: 0; }
+    .t-icon {
+      width: 28px; min-width: 28px; height: 28px;
+      background: var(--accent-dim); border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px;
+    }
+    .t-text { font-size: 14px; color: var(--muted); line-height: 1.6; }
+    .t-text strong { color: var(--text); font-weight: 600; }
 
----
+    .verdict {
+      background: var(--accent-dim);
+      border: 1px solid #2a5a3a;
+      border-radius: 10px;
+      padding: 1.25rem;
+      margin: 1.75rem 0;
+    }
+    .verdict-label { font-size: 11px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+    .verdict p { color: var(--text); margin-bottom: 0; }
 
-## She wasn't a tech person. That's the point.
+    .find-it {
+      display: flex; gap: 10px; flex-wrap: wrap; align-items: center;
+      margin-top: 1.75rem; padding-top: 1.75rem;
+      border-top: 1px solid var(--border);
+    }
+    .find-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 8px 16px; border-radius: 8px;
+      font-size: 13px; font-weight: 500; text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .find-btn:hover { opacity: 0.8; }
+    .btn-primary { background: var(--accent); color: #0f1117; }
+    .hoopla-note {
+      font-size: 13px; color: var(--muted);
+      display: flex; align-items: center; padding: 8px 12px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+    .hoopla-note strong { color: var(--text); margin: 0 2px; }
 
-Sarah Wynn-Williams came to Facebook from diplomacy. She had worked as a New Zealand diplomat, including postings in Washington, D.C. She understood how governments worked, how policy got made, how information moved across borders. She saw Facebook as a genuine instrument for democratic participation — a way to reach communities that traditional media couldn't, to connect movements, to give voice to people who didn't have institutional megaphones.
+    .reading-category {
+      display: inline-block;
+      font-size: 11px; color: var(--muted);
+      margin-top: 2rem; padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      width: 100%;
+    }
 
-She believed in the potential. That belief is load-bearing in this book, because everything that follows is the story of watching it get used as justification for decisions that had nothing to do with democratic participation and everything to do with market access.
+    .streisand-note {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid #f59e0b;
+      border-radius: 8px;
+      padding: 0.85rem 1.25rem;
+      margin-bottom: 1.75rem;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .streisand-note strong { color: var(--text); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a class="back-link" href="/reading">&#8592; Reading list</a>
 
-The title comes from F. Scott Fitzgerald's The Great Gatsby — Tom and Daisy Buchanan, who "smashed up things and creatures and then retreated back into their money or their vast carelessness." Wynn-Williams is precise about this choice. The problem at Facebook, as she documents it, was not always deliberate malice. It was carelessness at scale. People making consequential decisions about billions of lives with the same urgency and the same accountability framework they would apply to a product sprint.
+    <div class="book-header">
+      <div class="book-cover">
+        <img
+          src="https://mpd-biblio-covers.imgix.net/9781250391230.jpg"
+          alt="Careless People book cover"
+          style="width:80px;height:120px;object-fit:cover;border-radius:3px 8px 8px 3px;display:block;"
+          onerror="this.style.display='none'"
+        />
+      </div>
+      <div class="book-meta">
+        <p class="book-title">Careless People</p>
+        <p class="book-author">Sarah Wynn-Williams &nbsp;·&nbsp; 2025 &nbsp;·&nbsp; Memoir / Nonfiction</p>
+        <div class="tags">
+          <span class="tag">Tech power</span>
+          <span class="tag">Accountability</span>
+          <span class="tag">Whistleblower</span>
+          <span class="tag">Big Tech</span>
+          <span class="tag">Policy</span>
+          <span class="tag">Workplace</span>
+        </div>
+      </div>
+    </div>
 
----
+    <div class="streisand-note">
+      <strong>Worth knowing:</strong> Meta tried to legally block Wynn-Williams from promoting this book. The attempt backfired spectacularly — it hit #1 on the New York Times bestseller list. She later testified before the U.S. Senate.
+    </div>
 
-## What "lethal carelessness" actually looks like
+    <div class="why-card">
+      <p class="why-label">Why I read it</p>
+      <p class="why-text">This one came up in conversations about the intersection of tech, governance, and power — territory I care about as someone building toward AI security and policy work. A former Meta policy director writing about what it actually looked like from the inside? That's primary source material. Found it free on Hoopla through my library — worth checking before you buy.</p>
+    </div>
 
-The phrase she uses for it is "lethal carelessness" — and she means it literally in some cases. The book documents countries where Facebook's content moderation choices and expansion decisions contributed to real-world political violence. Not as a side effect that nobody anticipated, but as an outcome that was reported internally, flagged, and deprioritized because the market was valuable.
+    <h2>My take</h2>
+    <p>Sarah Wynn-Williams didn't walk into Facebook as a tech person. She came from diplomacy — she'd worked as a New Zealand diplomat, including in Washington, D.C. She saw Facebook as a genuine tool for democratic reach: the ability to connect communities, mobilize people, cross borders that traditional media couldn't. She believed in the potential. That belief is what makes the book hit the way it does, because you spend the whole thing watching it get dismantled piece by piece.</p>
 
-She was in the room for some of it. She describes encounters with juntas, with governments whose cooperation Facebook needed to maintain market access, with leaders whose willingness to use Facebook's tools for their own political consolidation was understood and accommodated. None of this was secret inside the company. The question that never got adequately answered was: what do we owe the people on the receiving end of this?
+    <p>The core argument of the book isn't that Facebook was evil from the start. It's that the people at the top accumulated power faster than they developed any framework for what to do with it responsibly. Wynn-Williams describes what she calls a "lethal carelessness" — not malice in every case, but a consistent pattern of making consequential decisions about billions of people's lives with the same energy you'd use to push a product update. Countries destabilized. Elections influenced. Content moderation policies that applied differently depending on whether the government involved was useful to Facebook's expansion goals. All of it handled with a shrug toward the downstream effects.</p>
 
-The answer, as she documents it, was usually: less than whatever the next growth metric required.
+    <p>The workplace layer runs parallel to all of this. Wynn-Williams was one of very few women in senior positions, navigating pregnancy, returning from maternity leave, and fielding the kind of treatment that doesn't get documented in HR reports — the subtle and not-so-subtle signals about what kind of person is taken seriously in that room. She reported harassment. She was ultimately fired. The personal and political threads don't feel like separate stories — they're the same story about what happens when accountability is optional at every level.</p>
 
-This is the accountability problem in its most concrete form. Not a question of values statements or mission language — Facebook had plenty of both — but of what actually happened when the values ran into the growth targets. Wynn-Williams watched the pattern repeat enough times to know it wasn't a series of mistakes. It was a structure.
+    <p>What connects this to my own work is the governance question. As someone building toward AI security and policy, the pattern Wynn-Williams describes is exactly what the field is trying to prevent from repeating: powerful systems deployed at global scale, governed by people who are optimizing for growth without asking who carries the cost. The book ends with her working on AI policy — not as a pivot, but as a direct continuation of everything she learned watching Facebook operate without guardrails. That thread matters.</p>
 
----
+    <div class="takeaways">
+      <h2 style="margin-bottom:16px;">Practitioner takeaways</h2>
 
-## The workplace thread is the same story
+      <div class="takeaway">
+        <div class="t-icon">⚖️</div>
+        <p class="t-text"><strong>Power without accountability is the actual threat model.</strong> Not just external actors. The most consequential damage in this book came from decisions made internally, by people with no external check on them.</p>
+      </div>
+      <div class="takeaway">
+        <div class="t-icon">🌍</div>
+        <p class="t-text"><strong>Policy decisions at scale have real-world casualties.</strong> Wynn-Williams documents countries where Facebook's content and moderation choices contributed directly to real-world harm. That's not hypothetical risk. That's what "move fast" looks like at a billion-user scale.</p>
+      </div>
+      <div class="takeaway">
+        <div class="t-icon">📋</div>
+        <p class="t-text"><strong>Governance frameworks matter before the crisis, not after.</strong> The absence of real policy infrastructure — not rules on paper, but actual enforced accountability — is what allowed the pattern to repeat across countries and contexts.</p>
+      </div>
+      <div class="takeaway">
+        <div class="t-icon">🤖</div>
+        <p class="t-text"><strong>The AI governance problem is the same problem, next chapter.</strong> Wynn-Williams didn't leave tech — she moved into AI policy work. The lesson she took from Facebook was that if governance doesn't exist at the start, it won't exist when it's needed most.</p>
+      </div>
+      <div class="takeaway">
+        <div class="t-icon">🎤</div>
+        <p class="t-text"><strong>Speaking up has a cost — and she paid it.</strong> She documented. She reported. She was fired. That's an honest portrait of what institutional accountability actually looks like when the institution isn't interested in accountability.</p>
+      </div>
+    </div>
 
-Running parallel to all of this is her experience as one of very few women in senior positions at the company. She navigated pregnancy and returning from maternity leave inside an environment that made clear, in ways that rarely got documented, which bodies and life circumstances fit the model of a serious person.
+    <div class="verdict">
+      <p class="verdict-label">Bottom line</p>
+      <p>This book is relevant to anyone building in tech who wants to understand what "responsible development" actually has to mean in practice — not as a values statement but as a structural requirement. Wynn-Williams lived the cost of what happens when that requirement is missing. If you're going to work in AI governance, security policy, or anything adjacent to how powerful systems get deployed at scale, this is required reading.</p>
+    </div>
 
-She reported her boss, Joel Kaplan, for sexual harassment. She was eventually fired. She believes those facts are connected, and she makes the case for why with the same methodical attention she brings to the policy chapters.
+    <div class="find-it">
+      <a class="find-btn btn-primary" href="https://www.amazon.com/Careless-People-Cautionary-Power-Idealism/dp/1250391237" target="_blank" rel="noopener">Find on Amazon &#x2197;</a>
+      <span class="hoopla-note">Also available free on <strong>Hoopla</strong> — check if your library has access.</span>
+    </div>
 
-I want to be direct about why this thread matters to how I read the book: it's the same story. The carelessness that allowed a company to shrug at the political consequences of its decisions in Myanmar is the same carelessness that allowed workplace dynamics to operate without meaningful accountability. Both reflect an environment where the people at the top had accumulated power faster than they developed any obligation to use it responsibly — toward the countries Facebook operated in, and toward the people who worked there.
-
-That's not a coincidence. It's a culture.
-
----
-
-## The governance question
-
-Wynn-Williams didn't leave tech after Facebook. She moved into AI policy work — and she frames it explicitly as a continuation, not a pivot. The lesson she took from watching Facebook operate without structural guardrails is that the time to build accountability frameworks is before the platform has a billion users, not after the Senate starts asking questions.
-
-This is where the book lands for me as someone building toward AI security and governance. The pattern she describes is exactly what the field is trying to prevent from repeating: powerful systems deployed at global scale, governed by people who are optimizing for one variable with no structural requirement to account for the costs they're externalizing onto everyone else.
-
-She raises the question of human oversight in high-stakes decisions — nuclear situations are mentioned, but the principle extends everywhere that consequential automated decisions get made at speed and scale. Who is accountable? To whom? Under what mechanism? These aren't rhetorical questions in 2025. They're the questions AI governance is supposed to be answering, and we are not moving as fast as the systems we're trying to govern.
-
----
-
-## What I took from it
-
-Careless People is not a comfortable book. It's not written to make you feel good about where things ended up, or confident that the right people are learning the right lessons. Wynn-Williams is a precise and often darkly funny writer, which makes the harder sections land harder.
-
-What it gave me was a clearer picture of what accountability actually has to mean in practice — not as a value that gets listed on a company's about page, but as a structural requirement enforced by something other than the goodwill of the people in power. The book is an argument, made through lived experience, for why that enforcement has to be external. Internal accountability in a culture of carelessness is not accountability. It's theater.
-
-If you're building in tech — in security, in policy, in AI governance, in anything adjacent to how powerful systems get deployed at scale — this is not an optional read. Wynn-Williams earned this account. The least we can do is take it seriously.
-
----
-
-*Daniel Santiago is a cybersecurity practitioner focused on IAM, cloud security, and AI security governance. He writes about building in this field from the practitioner's perspective — the books, the labs, the certs, and what the work actually looks like. Find him at danielsantiagosec.github.io.*
+    <p class="reading-category">Filed under: Books &nbsp;·&nbsp; Tech accountability &nbsp;·&nbsp; AI governance &nbsp;·&nbsp; Security culture</p>
+  </div>
+</body>
+</html>
