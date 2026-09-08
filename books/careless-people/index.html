@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Careless People — Book Review | Daniel Santiago</title>
+  <title>The Cuckoo's Egg — Book Review | Daniel Santiago</title>
   <style>
     :root {
       --bg: #0f1117;
@@ -37,6 +37,19 @@
     .book-header {
       display: flex; gap: 1.5rem; align-items: flex-start;
       margin-bottom: 2rem;
+    }
+    .book-spine {
+      width: 80px; min-width: 80px; height: 120px;
+      border-radius: 3px 10px 10px 3px;
+      background: #1a3a2a;
+      border-left: 8px solid #0d2218;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .spine-text {
+      color: #6fcf97; font-size: 9px; font-weight: 600;
+      letter-spacing: 0.06em; text-align: center;
+      writing-mode: vertical-rl; text-orientation: mixed;
+      text-transform: uppercase; line-height: 1.4;
     }
     .book-meta { flex: 1; }
     .book-title { font-size: 22px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
@@ -99,8 +112,7 @@
     .verdict p { color: var(--text); margin-bottom: 0; }
 
     .find-it {
-      display: flex; gap: 10px; flex-wrap: wrap; align-items: center;
-      margin-top: 1.75rem; padding-top: 1.75rem;
+      display: flex; gap: 10px; flex-wrap: wrap; margin-top: 1.75rem; padding-top: 1.75rem;
       border-top: 1px solid var(--border);
     }
     .find-btn {
@@ -111,6 +123,8 @@
     }
     .find-btn:hover { opacity: 0.8; }
     .btn-primary { background: var(--accent); color: #0f1117; }
+    .btn-ghost { background: var(--surface); color: var(--muted); border: 1px solid var(--border); }
+
     .hoopla-note {
       font-size: 13px; color: var(--muted);
       display: flex; align-items: center; padding: 8px 12px;
@@ -118,7 +132,6 @@
       border-radius: 8px;
     }
     .hoopla-note strong { color: var(--text); margin: 0 2px; }
-
     .reading-category {
       display: inline-block;
       font-size: 11px; color: var(--muted);
@@ -126,19 +139,6 @@
       border-top: 1px solid var(--border);
       width: 100%;
     }
-
-    .streisand-note {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-left: 3px solid #f59e0b;
-      border-radius: 8px;
-      padding: 0.85rem 1.25rem;
-      margin-bottom: 1.75rem;
-      font-size: 13px;
-      color: var(--muted);
-      line-height: 1.6;
-    }
-    .streisand-note strong { color: var(--text); }
   </style>
 </head>
 <body>
@@ -147,81 +147,72 @@
 
     <div class="book-header">
       <div class="book-cover">
-        <img
-          src="/books/images/careless-people.jpg"
-          alt="Careless People book cover"
-          style="width:80px;height:120px;object-fit:cover;border-radius:3px 8px 8px 3px;display:block;"
-          onerror="this.style.display='none'"
-        />
+        <img src="/books/images/cuckoos-egg.jpg" alt="The Cuckoo's Egg book cover" style="width:80px;height:120px;object-fit:cover;border-radius:3px 8px 8px 3px;display:block;" />
       </div>
       <div class="book-meta">
-        <p class="book-title">Careless People</p>
-        <p class="book-author">Sarah Wynn-Williams &nbsp;·&nbsp; 2025 &nbsp;·&nbsp; Memoir / Nonfiction</p>
+        <p class="book-title">The Cuckoo's Egg</p>
+        <p class="book-author">Cliff Stoll &nbsp;·&nbsp; 1989 &nbsp;·&nbsp; Nonfiction</p>
         <div class="tags">
-          <span class="tag">Tech power</span>
-          <span class="tag">Accountability</span>
-          <span class="tag">Whistleblower</span>
-          <span class="tag">Big Tech</span>
-          <span class="tag">Policy</span>
-          <span class="tag">Workplace</span>
+          <span class="tag">Threat hunting</span>
+          <span class="tag">True story</span>
+          <span class="tag">Cold War</span>
+          <span class="tag">APT</span>
+          <span class="tag">Honeypot</span>
+          <span class="tag">Nation-state</span>
         </div>
       </div>
     </div>
 
-    <div class="streisand-note">
-      <strong>Worth knowing:</strong> Meta tried to legally block Wynn-Williams from promoting this book. The attempt backfired spectacularly — it hit #1 on the New York Times bestseller list. She later testified before the U.S. Senate.
-    </div>
-
     <div class="why-card">
       <p class="why-label">Why I read it</p>
-      <p class="why-text">This one came up in conversations about the intersection of tech, governance, and power — territory I care about as someone building toward AI security and policy work. A former Meta policy director writing about what it actually looked like from the inside? That's primary source material. Found it free on Hoopla through my library — worth checking before you buy.</p>
+      <p class="why-text">This one came up repeatedly across multiple people in my security community — Simply Cyber, BSides, Antisyphon. When the same book keeps surfacing from practitioners you respect, you stop adding it to the "someday" list. I found it for free on Hoopla through my library — worth checking before you buy.</p>
     </div>
 
     <h2>My take</h2>
-    <p>Sarah Wynn-Williams didn't walk into Facebook as a tech person. She came from diplomacy — she'd worked as a New Zealand diplomat, including in Washington, D.C. She saw Facebook as a genuine tool for democratic reach: the ability to connect communities, mobilize people, cross borders that traditional media couldn't. She believed in the potential. That belief is what makes the book hit the way it does, because you spend the whole thing watching it get dismantled piece by piece.</p>
+    <p>It starts with a $0.75 accounting discrepancy. The kind of thing most people would chalk up to a rounding error and move on. Cliff Stoll didn't. A systems administrator assigned to look into the discrepancy by his boss, he stumbled into a live threat actor actively prowling through systems at Lawrence Berkeley National Laboratory in 1986 — using compromised machines to dodge expensive long-distance phone charges and pivot toward U.S. military and government networks.</p>
 
-    <p>The core argument of the book isn't that Facebook was evil from the start. It's that the people at the top accumulated power faster than they developed any framework for what to do with it responsibly. Wynn-Williams describes what she calls a "lethal carelessness" — not malice in every case, but a consistent pattern of making consequential decisions about billions of people's lives with the same energy you'd use to push a product update. Countries destabilized. Elections influenced. Content moderation policies that applied differently depending on whether the government involved was useful to Facebook's expansion goals. All of it handled with a shrug toward the downstream effects.</p>
+    <p>What makes this book land differently when you're in the security field is that everything Stoll built by hand, we've now automated. The honeypot he constructed out of fake system names, fabricated communications, and fictitious SDI research documents to buy time and keep the hacker engaged? That's threat deception. The log parsing and manual alarm scripts he wrote to track a live actor across his network? That's detection engineering. He was doing all of it without tooling, without a team, and without institutional buy-in — because the FBI at the time only cared about cases above a certain monetary threshold.</p>
 
-    <p>The workplace layer runs parallel to all of this. Wynn-Williams was one of very few women in senior positions, navigating pregnancy, returning from maternity leave, and fielding the kind of treatment that doesn't get documented in HR reports — the subtle and not-so-subtle signals about what kind of person is taken seriously in that room. She reported harassment. She was ultimately fired. The personal and political threads don't feel like separate stories — they're the same story about what happens when accountability is optional at every level.</p>
+    <p>That friction with three-letter agencies is one of the more honest parts of the book. Stoll had to navigate the FBI, NSA, and CIA simultaneously — each with different mandates, different thresholds for what constituted a real threat, and different opinions on whose jurisdiction it fell under. It's the kind of organizational friction that still exists today in a lot of organizations, just with different acronyms.</p>
 
-    <p>What connects this to my own work is the governance question. As someone building toward AI security and policy, the pattern Wynn-Williams describes is exactly what the field is trying to prevent from repeating: powerful systems deployed at global scale, governed by people who are optimizing for growth without asking who carries the cost. The book ends with her working on AI policy — not as a pivot, but as a direct continuation of everything she learned watching Facebook operate without guardrails. That thread matters.</p>
+    <p>The OSINT angle he surfaces is sharp and worth sitting with. The attacker wasn't stealing classified files. He was aggregating unclassified ones — understanding that context and correlation create intelligence value even when no single document is marked sensitive. That's a core principle in how we think about data classification and the mosaic effect, and it was playing out in real time in 1986.</p>
 
     <div class="takeaways">
       <h2 style="margin-bottom:16px;">Practitioner takeaways</h2>
 
       <div class="takeaway">
-        <div class="t-icon">⚖️</div>
-        <p class="t-text"><strong>Power without accountability is the actual threat model.</strong> Not just external actors. The most consequential damage in this book came from decisions made internally, by people with no external check on them.</p>
+        <div class="t-icon">&#x1F50D;</div>
+        <p class="t-text"><strong>Threat hunting starts with an anomaly.</strong> A $0.75 discrepancy nobody else noticed. Following it anyway — that's the mindset. The tools changed. That part didn't.</p>
       </div>
       <div class="takeaway">
-        <div class="t-icon">🌍</div>
-        <p class="t-text"><strong>Policy decisions at scale have real-world casualties.</strong> Wynn-Williams documents countries where Facebook's content and moderation choices contributed directly to real-world harm. That's not hypothetical risk. That's what "move fast" looks like at a billion-user scale.</p>
+        <div class="t-icon">&#x1F36F;</div>
+        <p class="t-text"><strong>Honeypots are old — and they worked.</strong> Stoll fabricated fake documents and system names to delay and study a live actor. The deception principles behind modern honeypots trace directly to this.</p>
       </div>
       <div class="takeaway">
-        <div class="t-icon">📋</div>
-        <p class="t-text"><strong>Governance frameworks matter before the crisis, not after.</strong> The absence of real policy infrastructure — not rules on paper, but actual enforced accountability — is what allowed the pattern to repeat across countries and contexts.</p>
+        <div class="t-icon">&#x1F4E1;</div>
+        <p class="t-text"><strong>Unclassified doesn't mean unimportant.</strong> Mosaic theory was playing out decades before most of us had the vocabulary for it. Context turns public data into intelligence.</p>
       </div>
       <div class="takeaway">
-        <div class="t-icon">🤖</div>
-        <p class="t-text"><strong>The AI governance problem is the same problem, next chapter.</strong> Wynn-Williams didn't leave tech — she moved into AI policy work. The lesson she took from Facebook was that if governance doesn't exist at the start, it won't exist when it's needed most.</p>
+        <div class="t-icon">&#x1F3DB;</div>
+        <p class="t-text"><strong>Organizational friction is part of the job.</strong> Navigating agencies with competing mandates and thresholds while running a live investigation alone is a realistic picture of what cross-functional security work looks like.</p>
       </div>
       <div class="takeaway">
-        <div class="t-icon">🎤</div>
-        <p class="t-text"><strong>Speaking up has a cost — and she paid it.</strong> She documented. She reported. She was fired. That's an honest portrait of what institutional accountability actually looks like when the institution isn't interested in accountability.</p>
+        <div class="t-icon">&#x26A1;</div>
+        <p class="t-text"><strong>Compensating controls can be physical.</strong> Stoll literally jiggled wires to create signal disruptions when the attacker probed sensitive areas. Lo-fi, effective, and documented. That's a compensating control.</p>
       </div>
     </div>
 
     <div class="verdict">
       <p class="verdict-label">Bottom line</p>
-      <p>This book is relevant to anyone building in tech who wants to understand what "responsible development" actually has to mean in practice — not as a values statement but as a structural requirement. Wynn-Williams lived the cost of what happens when that requirement is missing. If you're going to work in AI governance, security policy, or anything adjacent to how powerful systems get deployed at scale, this is required reading.</p>
+      <p>If you're in this field and haven't read it, read it. If you read it before entering security, read it again — you'll recognize things you missed the first time. Stoll didn't know he was writing a foundational text for a profession that barely existed yet. That's exactly what makes it worth your time.</p>
     </div>
 
     <div class="find-it">
-      <a class="find-btn btn-primary" href="https://www.amazon.com/Careless-People-Cautionary-Power-Idealism/dp/1250391237" target="_blank" rel="noopener">Find on Amazon &#x2197;</a>
+      <a class="find-btn btn-primary" href="https://www.amazon.com/Cuckoos-Egg-Tracking-Computer-Espionage/dp/1416507787" target="_blank" rel="noopener">Find on Amazon &#x2197;</a>
       <span class="hoopla-note">Also available free on <strong>Hoopla</strong> — check if your library has access.</span>
     </div>
 
-    <p class="reading-category">Filed under: Books &nbsp;·&nbsp; Tech accountability &nbsp;·&nbsp; AI governance &nbsp;·&nbsp; Security culture</p>
+    <p class="reading-category">Filed under: Books &nbsp;·&nbsp; Threat hunting &nbsp;·&nbsp; Security culture</p>
   </div>
 </body>
 </html>
