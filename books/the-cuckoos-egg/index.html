@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Cuckoo's Egg — Book Review | Daniel Santiago</title>
+<title>The Cuckoo's Egg: Book Review | Daniel Santiago</title>
 <meta name="description" content="Daniel Santiago's practitioner take on The Cuckoo's Egg by Cliff Stoll.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -14,14 +14,24 @@
     --amber: #C08A2E;
     --amber-deep: #8F6A20;
     --teal: #2D6A6E;
+    --red: #A6423B;
     --mono: 'JetBrains Mono', monospace;
     --body: 'IBM Plex Sans', sans-serif;
-
+    --paper: #ECEFE8;
+    --paper-raised: #F9FBF6;
+    --ink: #16233A;
+    --ink-soft: #45505C;
+    --line: #C2CABB;
+  }
+  [data-theme="dark"]{
     --paper: #1B2430;
     --paper-raised: #232E3D;
     --ink: #ECEEE7;
     --ink-soft: #AEB7C2;
     --line: #3A4552;
+    --amber: #D9A34A;
+    --amber-deep: #E0B366;
+    --teal: #4FB3B8;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   body{
@@ -35,7 +45,7 @@
   img{max-width:100%; display:block;}
   .wrap{max-width:680px; margin:0 auto; padding:0 24px;}
 
-  .top-bar{border-bottom:1px solid var(--line); padding:20px 0; margin-bottom:40px;}
+  .top-bar{padding:18px 0 0; margin-bottom:32px;}
   .back-link{font-family:var(--mono); font-size:12.5px; color:var(--ink-soft); text-decoration:none; display:inline-flex; align-items:center; gap:6px; transition:color .15s;}
   .back-link:hover{color:var(--amber);}
 
@@ -72,9 +82,54 @@
   .hoopla-note strong{color:var(--ink); margin:0 4px;}
 
   .filed-under{font-family:var(--mono); font-size:11px; color:var(--ink-soft); margin-top:36px; padding-top:16px; border-top:1px solid var(--line);}
+
+  /* ---------- Shared site nav ---------- */
+  header.nav{position:sticky; top:0; z-index:50; background:color-mix(in srgb, var(--paper) 90%, transparent); backdrop-filter:blur(6px); border-bottom:1px solid var(--line);}
+  .nav-inner{display:flex; align-items:center; justify-content:space-between; padding:16px 28px; max-width:1080px; margin:0 auto; gap:16px;}
+  .logo{font-family:var(--mono); font-weight:700; font-size:15px; letter-spacing:0.02em; text-decoration:none; color:var(--ink);}
+  .logo span{color:var(--amber);}
+  nav ul{list-style:none; display:flex; gap:26px;}
+  nav a{font-family:var(--mono); font-size:12.5px; text-decoration:none; text-transform:uppercase; letter-spacing:0.06em; color:var(--ink-soft); transition:color .15s; padding-bottom:3px; border-bottom:2px solid transparent;}
+  nav a:hover{color:var(--ink);}
+  nav a.active{color:var(--ink); border-bottom-color:var(--amber);}
+  .nav-left{display:flex; align-items:center; gap:12px;}
+  .nav-right{display:flex; align-items:center; gap:10px;}
+  .theme-toggle{font-family:var(--mono); background:none; border:1px solid var(--line); border-radius:20px; padding:6px 12px; font-size:13px; cursor:pointer; color:var(--ink); transition:border-color .15s;}
+  .theme-toggle:hover{border-color:var(--amber);}
+  .nav-toggle{display:none; font-family:var(--mono); background:none; border:1px solid var(--ink); border-radius:4px; padding:6px 10px; font-size:12px; cursor:pointer; color:var(--ink);}
+  @media (max-width:760px){
+    nav ul{position:absolute; top:100%; left:0; right:0; background:var(--paper-raised); flex-direction:column; gap:0; border-bottom:1px solid var(--line); display:none;}
+    nav ul.open{display:flex;}
+    nav ul li{border-top:1px solid var(--line);}
+    nav ul a{display:block; padding:14px 28px;}
+    .nav-toggle{display:block;}
+  }
 </style>
 </head>
 <body>
+<header class="nav">
+  <div class="nav-inner">
+    <div class="nav-left">
+      <a class="logo" href="/" style="text-decoration:none">D.SANTIAGO<span>_</span></a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">☀</button>
+    </div>
+    <div class="nav-right">
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">MENU</button>
+    </div>
+    <nav>
+      <ul id="navList">
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#skills">Skills</a></li>
+        <li><a href="/#experience">Experience</a></li>
+        <li><a href="/#projects">Projects</a></li>
+        <li><a href="/books/" class="active">Books</a></li>
+        <li><a href="/#tools">Tools</a></li>
+        <li><a href="/#blog">Blog</a></li>
+        <li><a href="/#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
   <div class="top-bar">
     <div class="wrap">
       <a class="back-link" href="/books/">← All Book Reviews</a>
@@ -102,27 +157,27 @@
 
     <div class="why-card">
       <div class="why-label">Why I read it</div>
-      <p class="why-text">This one came up repeatedly across multiple people in my security community — Simply Cyber, BSides, Antisyphon. When the same book keeps surfacing from practitioners you respect, you stop adding it to the "someday" list. I found it for free on Hoopla through my library — worth checking before you buy.</p>
+      <p class="why-text">This one came up repeatedly across multiple people in my security community (Simply Cyber, BSides, Antisyphon). When the same book keeps surfacing from practitioners you respect, you stop adding it to the "someday" list. I found it for free on Hoopla through my library, so it's worth checking before you buy.</p>
     </div>
 
     <h2>My Take</h2>
-    <p>It starts with a $0.75 accounting discrepancy. The kind of thing most people would chalk up to a rounding error and move on. Cliff Stoll didn't. A systems administrator assigned to look into the discrepancy by his boss, he stumbled into a live threat actor actively prowling through systems at Lawrence Berkeley National Laboratory in 1986 — using compromised machines to dodge expensive long-distance phone charges and pivot toward U.S. military and government networks.</p>
+    <p>It starts with a $0.75 accounting discrepancy. The kind of thing most people would chalk up to a rounding error and move on. Cliff Stoll didn't. A systems administrator assigned to look into the discrepancy by his boss, he stumbled into a live threat actor actively prowling through systems at Lawrence Berkeley National Laboratory in 1986, using compromised machines to dodge expensive long-distance phone charges and pivot toward U.S. military and government networks.</p>
 
-    <p>What makes this book land differently when you're in the security field is that everything Stoll built by hand, we've now automated. The honeypot he constructed out of fake system names, fabricated communications, and fictitious SDI research documents to buy time and keep the hacker engaged? That's threat deception. The log parsing and manual alarm scripts he wrote to track a live actor across his network? That's detection engineering. He was doing all of it without tooling, without a team, and without institutional buy-in — because the FBI at the time only cared about cases above a certain monetary threshold.</p>
+    <p>What makes this book land differently when you're in the security field is that everything Stoll built by hand, we've now automated. The honeypot he constructed out of fake system names, fabricated communications, and fictitious SDI research documents to buy time and keep the hacker engaged? That's threat deception. The log parsing and manual alarm scripts he wrote to track a live actor across his network? That's detection engineering. He was doing all of it without tooling, without a team, and without institutional buy-in, because the FBI at the time only cared about cases above a certain monetary threshold.</p>
 
-    <p>That friction with three-letter agencies is one of the more honest parts of the book. Stoll had to navigate the FBI, NSA, and CIA simultaneously — each with different mandates, different thresholds for what constituted a real threat, and different opinions on whose jurisdiction it fell under. It's the kind of organizational friction that still exists today in a lot of organizations, just with different acronyms.</p>
+    <p>That friction with three-letter agencies is one of the more honest parts of the book. Stoll had to navigate the FBI, NSA, and CIA simultaneously, each with different mandates, different thresholds for what constituted a real threat, and different opinions on whose jurisdiction it fell under. It's the kind of organizational friction that still exists today in a lot of organizations, just with different acronyms.</p>
 
-    <p>The OSINT angle he surfaces is sharp and worth sitting with. The attacker wasn't stealing classified files. He was aggregating unclassified ones — understanding that context and correlation create intelligence value even when no single document is marked sensitive. That's a core principle in how we think about data classification and the mosaic effect, and it was playing out in real time in 1986.</p>
+    <p>The OSINT angle he surfaces is sharp and worth sitting with. The attacker wasn't stealing classified files. He was aggregating unclassified ones, understanding that context and correlation create intelligence value even when no single document is marked sensitive. That's a core principle in how we think about data classification and the mosaic effect, and it was playing out in real time in 1986.</p>
 
     <div class="takeaways">
       <h2 style="margin-top:0;">Practitioner Takeaways</h2>
       <div class="takeaway">
         <div class="t-icon">🔍</div>
-        <p class="t-text"><strong>Threat hunting starts with an anomaly.</strong> A $0.75 discrepancy nobody else noticed. Following it anyway — that's the mindset. The tools changed. That part didn't.</p>
+        <p class="t-text"><strong>Threat hunting starts with an anomaly.</strong> A $0.75 discrepancy nobody else noticed. Following it anyway. That's the mindset. The tools changed. That part didn't.</p>
       </div>
       <div class="takeaway">
         <div class="t-icon">🍯</div>
-        <p class="t-text"><strong>Honeypots are old — and they worked.</strong> Stoll fabricated fake documents and system names to delay and study a live actor. The deception principles behind modern honeypots trace directly to this.</p>
+        <p class="t-text"><strong>Honeypots are old, and they worked.</strong> Stoll fabricated fake documents and system names to delay and study a live actor. The deception principles behind modern honeypots trace directly to this.</p>
       </div>
       <div class="takeaway">
         <div class="t-icon">📡</div>
@@ -140,15 +195,33 @@
 
     <div class="verdict">
       <div class="verdict-label">Bottom Line</div>
-      <p>If you're in this field and haven't read it, read it. If you read it before entering security, read it again — you'll recognize things you missed the first time. Stoll didn't know he was writing a foundational text for a profession that barely existed yet. That's exactly what makes it worth your time.</p>
+      <p>If you're in this field and haven't read it, read it. If you read it before entering security, read it again, because you'll recognize things you missed the first time. Stoll didn't know he was writing a foundational text for a profession that barely existed yet. That's exactly what makes it worth your time.</p>
     </div>
 
     <div class="find-it">
       <a class="btn btn-primary" href="https://www.amazon.com/Cuckoos-Egg-Tracking-Computer-Espionage/dp/1416507787" target="_blank" rel="noopener">Find on Amazon ↗</a>
-      <span class="hoopla-note">Also available free on <strong>Hoopla</strong> — check if your library has access.</span>
+      <span class="hoopla-note">Also available free on <strong>Hoopla</strong>. Check if your library has access.</span>
     </div>
 
     <p class="filed-under">Filed under: Books · Threat Hunting · Security Culture</p>
   </div>
+<script>
+  const navToggle = document.getElementById('navToggle');
+  const navList = document.getElementById('navList');
+  navToggle.addEventListener('click', () => {
+    const open = navList.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', open);
+  });
+  const root = document.documentElement;
+  const themeToggle = document.getElementById('themeToggle');
+  function applyTheme(t){
+    root.setAttribute('data-theme', t);
+    themeToggle.textContent = t === 'dark' ? '☀' : '🌙';
+  }
+  applyTheme('dark');
+  themeToggle.addEventListener('click', () => {
+    applyTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  });
+</script>
 </body>
 </html>
