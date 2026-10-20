@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Security Reading List | Daniel Santiago</title>
-<meta name="description" content="Daniel Santiago's cybersecurity book reviews — practitioner takeaways from foundational and modern security reading.">
+<meta name="description" content="Daniel Santiago's cybersecurity book reviews: practitioner takeaways from foundational and modern security reading.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -14,14 +14,24 @@
     --amber: #C08A2E;
     --amber-deep: #8F6A20;
     --teal: #2D6A6E;
+    --red: #A6423B;
     --mono: 'JetBrains Mono', monospace;
     --body: 'IBM Plex Sans', sans-serif;
-
+    --paper: #ECEFE8;
+    --paper-raised: #F9FBF6;
+    --ink: #16233A;
+    --ink-soft: #45505C;
+    --line: #C2CABB;
+  }
+  [data-theme="dark"]{
     --paper: #1B2430;
     --paper-raised: #232E3D;
     --ink: #ECEEE7;
     --ink-soft: #AEB7C2;
     --line: #3A4552;
+    --amber: #D9A34A;
+    --amber-deep: #E0B366;
+    --teal: #4FB3B8;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   body{
@@ -35,7 +45,7 @@
   img{max-width:100%; display:block;}
   .wrap{max-width:860px; margin:0 auto; padding:0 24px;}
 
-  .top-bar{border-bottom:1px solid var(--line); padding:20px 0; margin-bottom:40px;}
+  .top-bar{padding:18px 0 0; margin-bottom:32px;}
   .back-link{font-family:var(--mono); font-size:12.5px; color:var(--ink-soft); text-decoration:none; display:inline-flex; align-items:center; gap:6px; transition:color .15s;}
   .back-link:hover{color:var(--amber);}
 
@@ -48,30 +58,77 @@
   .book-grid{display:grid; grid-template-columns:1fr; gap:16px;}
 
   .book-card{
-    display:flex; gap:20px; align-items:center;
+    display:flex; gap:20px; align-items:flex-start;
     background:var(--paper-raised); border:1px solid var(--line); border-radius:8px;
     padding:18px 20px; text-decoration:none; color:var(--ink);
     transition:box-shadow .15s, transform .15s;
   }
   .book-card:hover{box-shadow:4px 5px 0 var(--line); transform:translateY(-2px);}
-  .book-card img{width:64px; height:96px; object-fit:cover; border-radius:3px; border:2px solid var(--amber); flex-shrink:0;}
+  .book-card img{width:64px; border-radius:3px; border:2px solid var(--amber); flex-shrink:0;}
   .book-card-body{flex:1; min-width:0;}
   .book-card-title{font-size:16.5px; font-weight:700; margin-bottom:4px;}
   .book-card-author{font-family:var(--mono); font-size:12px; color:var(--ink-soft); margin-bottom:8px;}
-  .book-card-take{font-size:14px; color:var(--ink-soft); line-height:1.5;}
-  .book-card-arrow{font-family:var(--mono); font-size:13px; color:var(--teal); flex-shrink:0; white-space:nowrap;}
+  .book-card-take{font-size:14px; color:var(--ink-soft); line-height:1.5; margin-bottom:10px;}
+  .book-card-tags{display:flex; flex-wrap:wrap; gap:6px;}
+  .book-tag{font-family:var(--mono); font-size:10.5px; letter-spacing:0.03em; padding:4px 9px; border-radius:20px; border:1px solid var(--line); color:var(--ink-soft);}
+  .book-card-arrow{font-family:var(--mono); font-size:13px; color:var(--teal); flex-shrink:0;}
 
   .empty-note{
     background:var(--paper-raised); border:1px dashed var(--line); border-radius:8px;
     padding:24px; text-align:center; color:var(--ink-soft); font-size:14px; font-family:var(--mono);
-    margin-top:16px;
+    margin-top:8px;
+  }
+
+  /* ---------- Shared site nav ---------- */
+  header.nav{position:sticky; top:0; z-index:50; background:color-mix(in srgb, var(--paper) 90%, transparent); backdrop-filter:blur(6px); border-bottom:1px solid var(--line);}
+  .nav-inner{display:flex; align-items:center; justify-content:space-between; padding:16px 28px; max-width:1080px; margin:0 auto; gap:16px;}
+  .logo{font-family:var(--mono); font-weight:700; font-size:15px; letter-spacing:0.02em; text-decoration:none; color:var(--ink);}
+  .logo span{color:var(--amber);}
+  nav ul{list-style:none; display:flex; gap:26px;}
+  nav a{font-family:var(--mono); font-size:12.5px; text-decoration:none; text-transform:uppercase; letter-spacing:0.06em; color:var(--ink-soft); transition:color .15s; padding-bottom:3px; border-bottom:2px solid transparent;}
+  nav a:hover{color:var(--ink);}
+  nav a.active{color:var(--ink); border-bottom-color:var(--amber);}
+  .nav-left{display:flex; align-items:center; gap:12px;}
+  .nav-right{display:flex; align-items:center; gap:10px;}
+  .theme-toggle{font-family:var(--mono); background:none; border:1px solid var(--line); border-radius:20px; padding:6px 12px; font-size:13px; cursor:pointer; color:var(--ink); transition:border-color .15s;}
+  .theme-toggle:hover{border-color:var(--amber);}
+  .nav-toggle{display:none; font-family:var(--mono); background:none; border:1px solid var(--ink); border-radius:4px; padding:6px 10px; font-size:12px; cursor:pointer; color:var(--ink);}
+  @media (max-width:760px){
+    nav ul{position:absolute; top:100%; left:0; right:0; background:var(--paper-raised); flex-direction:column; gap:0; border-bottom:1px solid var(--line); display:none;}
+    nav ul.open{display:flex;}
+    nav ul li{border-top:1px solid var(--line);}
+    nav ul a{display:block; padding:14px 28px;}
+    .nav-toggle{display:block;}
   }
 </style>
 </head>
 <body>
+<header class="nav">
+  <div class="nav-inner">
+    <div class="nav-left">
+      <a class="logo" href="/" style="text-decoration:none">D.SANTIAGO<span>_</span></a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">☀</button>
+    </div>
+    <div class="nav-right">
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">MENU</button>
+    </div>
+    <nav>
+      <ul id="navList">
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#skills">Skills</a></li>
+        <li><a href="/#experience">Experience</a></li>
+        <li><a href="/#projects">Projects</a></li>
+        <li><a href="/books/" class="active">Books</a></li>
+        <li><a href="/#tools">Tools</a></li>
+        <li><a href="/#blog">Blog</a></li>
+        <li><a href="/#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
   <div class="top-bar">
     <div class="wrap">
-      <a class="back-link" href="/">← Daniel Santiago — Portfolio</a>
+      <a class="back-link" href="/">← Back to portfolio</a>
     </div>
   </div>
 
@@ -79,47 +136,47 @@
     <div class="header">
       <div class="eyebrow">Security Reading List</div>
       <h1>Books worth a practitioner's time.</h1>
-      <p class="lede">Reviews written from a working security perspective — what each book actually teaches you about the job, not just a summary of the plot.</p>
+      <p class="lede">Reviews written from a working security perspective: what each book actually teaches you about the job, not just a summary of the plot.</p>
     </div>
 
     <div class="book-grid">
-
-      <!-- The Cuckoo's Egg -->
       <a class="book-card" href="/books/the-cuckoos-egg/">
-        <img src="/books/images/cuckoos-egg.jpg" alt="The Cuckoo's Egg book cover">
+        <img src="https://covers.openlibrary.org/b/id/7880307-M.jpg" alt="The Cuckoo's Egg book cover">
         <div class="book-card-body">
           <div class="book-card-title">The Cuckoo's Egg</div>
           <div class="book-card-author">Cliff Stoll · 1989 · Nonfiction</div>
-          <div class="book-card-take">A $0.75 accounting error leads to the first documented case of state-sponsored hacking — and a hands-on lesson in threat hunting before the term existed.</div>
+          <div class="book-card-take">A $0.75 accounting error leads to the first documented case of state-sponsored hacking, and a hands-on lesson in threat hunting before the term existed.</div>
+          <div class="book-card-tags">
+            <span class="book-tag">Threat Hunting</span>
+            <span class="book-tag">Honeypots</span>
+            <span class="book-tag">OSINT</span>
+            <span class="book-tag">Incident Response</span>
+            <span class="book-tag">Nation-State</span>
+          </div>
         </div>
         <div class="book-card-arrow">Read →</div>
       </a>
-
-      <!-- Careless People -->
-      <a class="book-card" href="/books/careless-people/">
-        <img src="/books/images/careless-people.jpg" alt="Careless People book cover">
-        <div class="book-card-body">
-          <div class="book-card-title">Careless People</div>
-          <div class="book-card-author">Sarah Wynn-Williams · 2025 · Memoir</div>
-          <div class="book-card-take">A former Facebook policy director documents what happens when a platform accumulates global power faster than it develops any framework for using it responsibly.</div>
-        </div>
-        <div class="book-card-arrow">Read →</div>
-      </a>
-
-      <!-- Ghost in the Wires -->
-      <a class="book-card" href="/books/ghost-in-the-wires/">
-        <img src="/books/images/ghost-in-the-wires.jpg" alt="Ghost in the Wires book cover">
-        <div class="book-card-body">
-          <div class="book-card-title">Ghost in the Wires</div>
-          <div class="book-card-author">Kevin Mitnick · 2011 · Memoir</div>
-          <div class="book-card-take">The FBI's most wanted hacker tells his own story — and in doing so, writes the definitive case study on social engineering as the vulnerability that never gets patched.</div>
-        </div>
-        <div class="book-card-arrow">Read →</div>
-      </a>
-
     </div>
 
-    <div class="empty-note">More reviews coming as I read them — next up: TBD</div>
+    <div class="empty-note">More reviews coming as I read them. Next up: TBD</div>
   </div>
+<script>
+  const navToggle = document.getElementById('navToggle');
+  const navList = document.getElementById('navList');
+  navToggle.addEventListener('click', () => {
+    const open = navList.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', open);
+  });
+  const root = document.documentElement;
+  const themeToggle = document.getElementById('themeToggle');
+  function applyTheme(t){
+    root.setAttribute('data-theme', t);
+    themeToggle.textContent = t === 'dark' ? '☀' : '🌙';
+  }
+  applyTheme('dark');
+  themeToggle.addEventListener('click', () => {
+    applyTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  });
+</script>
 </body>
 </html>
