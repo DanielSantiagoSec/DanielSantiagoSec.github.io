@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Daniel Santiago | Security Operations &amp; Cybersecurity</title>
-<meta name="description" content="Daniel Santiago, cybersecurity professional specializing in security operations, log analysis, and threat detection.">
+<title>Security Reading List | Daniel Santiago</title>
+<meta name="description" content="Daniel Santiago's cybersecurity book reviews: practitioner takeaways from foundational and modern security reading.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -17,13 +17,11 @@
     --red: #A6423B;
     --mono: 'JetBrains Mono', monospace;
     --body: 'IBM Plex Sans', sans-serif;
-
     --paper: #ECEFE8;
     --paper-raised: #F9FBF6;
     --ink: #16233A;
     --ink-soft: #45505C;
     --line: #C2CABB;
-    --grid-line: rgba(194,202,187,0.55);
   }
   [data-theme="dark"]{
     --paper: #1B2430;
@@ -31,46 +29,60 @@
     --ink: #ECEEE7;
     --ink-soft: #AEB7C2;
     --line: #3A4552;
-    --grid-line: rgba(58,69,82,0.6);
     --amber: #D9A34A;
     --amber-deep: #E0B366;
     --teal: #4FB3B8;
-    --red: #D97066;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
-  html{scroll-behavior:smooth;}
   body{
     background:var(--paper);
     color:var(--ink);
     font-family:var(--body);
     line-height:1.6;
-    background-image:
-      linear-gradient(var(--grid-line) 1px, transparent 1px),
-      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-    background-size:48px 48px;
-    background-position:-1px -1px;
-    transition:background-color .3s ease, color .3s ease;
-  }
-  @media (prefers-reduced-motion: reduce){
-    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important;}
+    padding:0 0 60px;
   }
   a{color:inherit;}
   img{max-width:100%; display:block;}
-  .wrap{max-width:1080px; margin:0 auto; padding:0 28px;}
-  ::selection{background:var(--amber); color:var(--on-deep);}
-  :focus-visible{outline:2px solid var(--teal); outline-offset:3px;}
+  .wrap{max-width:860px; margin:0 auto; padding:0 24px;}
 
-  .barcode{display:flex; align-items:flex-end; gap:3px; height:22px; margin:0 auto; width:fit-content; opacity:0.55;}
-  .barcode span{display:block; width:2px; background:var(--ink-soft);}
+  .top-bar{padding:18px 0 0; margin-bottom:32px;}
+  .back-link{font-family:var(--mono); font-size:12.5px; color:var(--ink-soft); text-decoration:none; display:inline-flex; align-items:center; gap:6px; transition:color .15s;}
+  .back-link:hover{color:var(--amber);}
 
-  /* ---------- Section bands ---------- */
-  section{padding:64px 0; transition:background-color .3s ease, border-color .3s ease;}
-  .band{background:var(--paper-raised); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .header{margin-bottom:40px;}
+  .eyebrow{font-family:var(--mono); font-size:12.5px; letter-spacing:0.12em; text-transform:uppercase; color:var(--teal); margin-bottom:12px; display:flex; align-items:center; gap:10px;}
+  .eyebrow::before{content:''; width:22px; height:1px; background:var(--teal);}
+  h1{font-size:clamp(26px,4vw,36px); font-weight:700; margin-bottom:14px; line-height:1.2;}
+  .lede{font-size:16px; color:var(--ink-soft); max-width:600px; line-height:1.7;}
 
-  /* ---------- Nav ---------- */
-  header.nav{position:sticky; top:0; z-index:50; background:color-mix(in srgb, var(--paper) 90%, transparent); backdrop-filter:blur(6px); border-bottom:1px solid var(--line); transition:background-color .3s ease, border-color .3s ease;}
+  .book-grid{display:grid; grid-template-columns:1fr; gap:16px;}
+
+  .book-card{
+    display:flex; gap:20px; align-items:flex-start;
+    background:var(--paper-raised); border:1px solid var(--line); border-radius:8px;
+    padding:18px 20px; text-decoration:none; color:var(--ink);
+    transition:box-shadow .15s, transform .15s;
+  }
+  .book-card:hover{box-shadow:4px 5px 0 var(--line); transform:translateY(-2px);}
+  .book-card img{width:64px; border-radius:3px; border:2px solid var(--amber); flex-shrink:0;}
+  .book-card-body{flex:1; min-width:0;}
+  .book-card-title{font-size:16.5px; font-weight:700; margin-bottom:4px;}
+  .book-card-author{font-family:var(--mono); font-size:12px; color:var(--ink-soft); margin-bottom:8px;}
+  .book-card-take{font-size:14px; color:var(--ink-soft); line-height:1.5; margin-bottom:10px;}
+  .book-card-tags{display:flex; flex-wrap:wrap; gap:6px;}
+  .book-tag{font-family:var(--mono); font-size:10.5px; letter-spacing:0.03em; padding:4px 9px; border-radius:20px; border:1px solid var(--line); color:var(--ink-soft);}
+  .book-card-arrow{font-family:var(--mono); font-size:13px; color:var(--teal); flex-shrink:0;}
+
+  .empty-note{
+    background:var(--paper-raised); border:1px dashed var(--line); border-radius:8px;
+    padding:24px; text-align:center; color:var(--ink-soft); font-size:14px; font-family:var(--mono);
+    margin-top:8px;
+  }
+
+  /* ---------- Shared site nav ---------- */
+  header.nav{position:sticky; top:0; z-index:50; background:color-mix(in srgb, var(--paper) 90%, transparent); backdrop-filter:blur(6px); border-bottom:1px solid var(--line);}
   .nav-inner{display:flex; align-items:center; justify-content:space-between; padding:16px 28px; max-width:1080px; margin:0 auto; gap:16px;}
-  .logo{font-family:var(--mono); font-weight:700; font-size:15px; letter-spacing:0.02em;}
+  .logo{font-family:var(--mono); font-weight:700; font-size:15px; letter-spacing:0.02em; text-decoration:none; color:var(--ink);}
   .logo span{color:var(--amber);}
   nav ul{list-style:none; display:flex; gap:26px;}
   nav a{font-family:var(--mono); font-size:12.5px; text-decoration:none; text-transform:uppercase; letter-spacing:0.06em; color:var(--ink-soft); transition:color .15s; padding-bottom:3px; border-bottom:2px solid transparent;}
@@ -88,602 +100,66 @@
     nav ul a{display:block; padding:14px 28px;}
     .nav-toggle{display:block;}
   }
-
-  /* ---------- Hero ---------- */
-  .hero{padding:72px 0 56px;}
-  .eyebrow{font-family:var(--mono); font-size:12.5px; letter-spacing:0.12em; text-transform:uppercase; color:var(--teal); margin-bottom:14px; display:flex; align-items:center; gap:10px;}
-  .eyebrow::before{content:''; width:22px; height:1px; background:var(--teal);}
-  .hero h1{font-family:var(--body); font-weight:700; font-size:clamp(30px,5vw,48px); line-height:1.15; letter-spacing:-0.01em; margin-bottom:18px; max-width:780px;}
-  .hero h1 em{font-style:normal; color:var(--amber-deep);}
-  .hero p.lede{font-size:18px; color:var(--ink-soft); max-width:640px; margin-bottom:32px;}
-  .hero-actions{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:44px;}
-  .btn{font-family:var(--mono); font-size:13px; text-decoration:none; padding:12px 20px; border-radius:3px; letter-spacing:0.02em; display:inline-flex; align-items:center; gap:8px; transition:transform .15s, box-shadow .15s; border:1px solid transparent; cursor:pointer;}
-  .btn-primary{background:var(--ink); color:var(--paper-raised);}
-  .btn-primary:hover{transform:translateY(-2px); box-shadow:3px 4px 0 var(--amber);}
-  .btn-ghost{border:1px solid var(--ink); color:var(--ink);}
-  .btn-ghost:hover{transform:translateY(-2px); box-shadow:3px 4px 0 var(--teal);}
-  .btn-ghost-dark{border:1px solid var(--on-deep); color:var(--on-deep);}
-  .btn-ghost-dark:hover{transform:translateY(-2px); box-shadow:3px 4px 0 var(--amber);}
-
-  .fact-strip{display:flex; gap:44px; flex-wrap:wrap; border-top:1px solid var(--line); padding-top:24px;}
-  .fact .k{font-family:var(--mono); font-size:11px; text-transform:uppercase; letter-spacing:0.08em; color:var(--ink-soft); margin-bottom:6px;}
-  .fact .v{font-weight:600; font-size:15px; max-width:220px;}
-
-  .hero-grid{display:grid; grid-template-columns:1.15fr 0.85fr; gap:40px; align-items:center;}
-  @media (max-width:820px){.hero-grid{grid-template-columns:1fr;}}
-
-  .hero-visual{display:flex; flex-direction:column; align-items:center; gap:22px;}
-
-  .photo-frame{width:100%; max-width:280px; aspect-ratio:4/5; border-radius:16px; overflow:hidden; border:3px solid var(--amber); background:var(--paper-raised); box-shadow:0 18px 40px -28px rgba(22,35,58,0.5); flex-shrink:0;}
-  .photo-frame img{width:100%; height:100%; object-fit:cover; object-position:50% 22%;}
-  .avatar-fallback{width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-family:var(--mono); font-weight:800; font-size:44px; color:var(--on-deep); background:linear-gradient(150deg, var(--deep), #223252);}
-
-  .badge{
-    --paper-raised: #FBFCFA;
-    --ink: #16233A;
-    --ink-soft: #4A5568;
-    --line: #C9D0CA;
-    background:var(--paper-raised);
-    color:var(--ink);
-    border:1px solid var(--line);
-    border-radius:10px;
-    padding:24px 26px;
-    width:100%; max-width:380px;
-    box-shadow:0 1px 0 var(--line), 0 18px 40px -30px rgba(22,35,58,0.5);
-    position:relative;
-    opacity:0;
-    animation:badgeIn .7s ease forwards .15s;
-  }
-  @keyframes badgeIn{from{opacity:0; transform:translateY(14px) rotate(-1deg);} to{opacity:1; transform:translateY(0) rotate(-1deg);}}
-  .badge::before{
-    content:''; position:absolute; top:-9px; left:32px; width:52px; height:16px;
-    background:var(--line); border-radius:0 0 6px 6px;
-  }
-  .badge-top{display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:16px;}
-  .badge-id{font-family:var(--mono); font-size:11px; color:var(--ink-soft); letter-spacing:0.05em;}
-  .badge-status{font-family:var(--mono); font-size:11px; color:var(--teal); display:flex; align-items:center; gap:6px;}
-  .dot{width:7px; height:7px; border-radius:50%; background:var(--teal); box-shadow:0 0 0 3px rgba(45,106,110,0.18);}
-  .badge-name{font-family:var(--body); font-weight:700; font-size:19px; line-height:1.2;}
-  .badge-role{font-family:var(--mono); font-size:12px; color:var(--ink-soft); margin-top:4px; margin-bottom:14px;}
-  .badge-tags{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px;}
-  .tag{font-family:var(--mono); font-size:11px; letter-spacing:0.03em; padding:5px 10px; border-radius:20px; border:1px solid var(--line); color:var(--ink-soft); background:rgba(255,255,255,0.08);}
-  .badge .barcode{margin:0;}
-
-  /* ---------- Section shell ---------- */
-  .section-head{margin-bottom:30px;}
-  .section-num{font-family:var(--mono); color:var(--amber-deep); font-size:13px;}
-  h2{font-family:var(--body); font-weight:700; font-size:clamp(24px,3.4vw,32px); letter-spacing:-0.01em; margin-top:10px; max-width:640px;}
-  .section-sub{color:var(--ink-soft); max-width:620px; margin-top:12px; font-size:15.5px;}
-  .divider{padding:8px 0 0;}
-
-  /* ---------- About ---------- */
-  .about-body{max-width:700px;}
-  .about-body p{color:var(--ink-soft); margin-bottom:16px; font-size:15.5px;}
-  blockquote.pull{border-left:3px solid var(--amber); padding:4px 0 4px 20px; margin:26px 0; font-size:17.5px; color:var(--ink); font-weight:500; line-height:1.5;}
-  .interest-list{display:flex; flex-wrap:wrap; gap:8px; margin:18px 0 22px;}
-  .cta-line{font-size:15.5px; color:var(--ink); font-weight:500;}
-  .cta-line a{color:var(--teal); text-decoration:underline;}
-
-  /* ---------- Skills ---------- */
-  .legend{display:flex; gap:22px; flex-wrap:wrap; margin:22px 0 34px; font-family:var(--mono); font-size:12px; color:var(--ink-soft);}
-  .legend span{display:inline-flex; align-items:center; gap:7px;}
-  .sdot{width:9px; height:9px; border-radius:50%; display:inline-block; flex-shrink:0;}
-  .sdot.active{background:var(--teal);}
-  .sdot.studying{background:var(--amber);}
-  .sdot.foundational{background:transparent; border:2px solid var(--ink-soft);}
-  .skills-grid{display:grid; grid-template-columns:1fr 1fr; gap:36px 48px;}
-  @media (max-width:760px){.skills-grid{grid-template-columns:1fr;}}
-  .skill-cat h3{font-family:var(--mono); font-size:12.5px; text-transform:uppercase; letter-spacing:0.08em; color:var(--ink); margin-bottom:14px; padding-bottom:10px; border-bottom:1px solid var(--line);}
-  .skill-cat ul{list-style:none;}
-  .skill-cat li{display:flex; align-items:center; justify-content:space-between; gap:10px; padding:9px 0; border-bottom:1px dashed var(--line); font-size:14.5px;}
-  .skill-cat li:last-child{border-bottom:none;}
-  .skill-status{font-family:var(--mono); font-size:10.5px; text-transform:uppercase; letter-spacing:0.04em; display:inline-flex; align-items:center; gap:6px; color:var(--ink-soft); flex-shrink:0;}
-  .skill-status.is-active{color:var(--teal); font-weight:700;}
-  .skill-status.is-studying{color:var(--amber-deep); font-weight:700;}
-
-  /* ---------- Experience timeline ---------- */
-  .timeline{position:relative; padding-left:26px; border-left:2px solid var(--line); margin-bottom:44px;}
-  .tl-item{position:relative; padding-bottom:40px;}
-  .tl-item:last-child{padding-bottom:0;}
-  .tl-item::before{content:''; position:absolute; left:-32px; top:4px; width:12px; height:12px; background:var(--paper-raised); border:2px solid var(--amber); border-radius:50%;}
-  .tl-date{font-family:var(--mono); font-size:12px; color:var(--amber-deep); letter-spacing:0.03em; margin-bottom:4px;}
-  .tl-role{font-weight:700; font-size:17px; margin-bottom:4px;}
-  .tl-org{font-family:var(--mono); font-size:12.5px; color:var(--ink-soft); margin-bottom:10px;}
-  .tl-item ul{padding-left:18px; color:var(--ink-soft); font-size:15px;}
-  .tl-item li{margin-bottom:6px;}
-  .sub-block{margin-top:36px;}
-  .sub-block h3{font-family:var(--mono); font-size:12.5px; text-transform:uppercase; letter-spacing:0.08em; color:var(--teal); margin-bottom:16px;}
-
-  .edu-highlight{background:var(--paper-raised); border:1px solid var(--line); border-left:3px solid var(--amber); border-radius:6px; padding:22px 26px;}
-  .edu-info .deg{font-weight:700; font-size:16.5px; margin-bottom:4px; color:var(--ink);}
-  .edu-info .concentration{font-size:14px; color:var(--ink-soft); margin-bottom:4px;}
-  .edu-info .school{font-weight:600; font-size:14.5px; color:var(--ink); margin-bottom:8px;}
-  .edu-info .meta{font-family:var(--mono); font-size:12.5px; color:var(--ink-soft);}
-  .edu-info .meta .highlight{color:var(--amber-deep); font-weight:700;}
-  .edu-honors{display:flex; gap:8px; flex-wrap:wrap;}
-
-  .award-list{list-style:none; color:var(--ink-soft); font-size:14.5px;}
-  .award-list li{padding:7px 0; border-bottom:1px dashed var(--line); display:flex; justify-content:space-between; gap:12px;}
-  .award-list li:last-child{border-bottom:none;}
-  .award-list .yr{font-family:var(--mono); font-size:11.5px; color:var(--amber-deep); flex-shrink:0;}
-
-  /* ---------- Projects ---------- */
-  .proj-grid{display:grid; grid-template-columns:1fr 1fr; gap:22px;}
-  @media (max-width:760px){.proj-grid{grid-template-columns:1fr;}}
-  .proj-card{background:var(--paper-raised); border:1px solid var(--line); border-radius:8px; padding:24px; display:flex; flex-direction:column; transition:box-shadow .15s, transform .15s;}
-  .proj-card:hover{box-shadow:4px 5px 0 var(--line); transform:translateY(-2px);}
-  .proj-top{display:flex; justify-content:space-between; align-items:flex-start; gap:12px; margin-bottom:10px;}
-  .proj-card h3{font-size:17px; font-weight:700;}
-  .proj-link{font-family:var(--mono); font-size:11px; color:var(--teal); text-decoration:none; white-space:nowrap;}
-  .proj-card p{color:var(--ink-soft); font-size:14.5px; margin-bottom:14px; flex:1;}
-  .stack{display:flex; flex-wrap:wrap; gap:6px;}
-  .stack span{font-family:var(--mono); font-size:10.5px; color:var(--ink-soft); border:1px solid var(--line); padding:3px 8px; border-radius:4px;}
-  .more-repos{margin-top:24px; padding-top:20px; border-top:1px dashed var(--line);}
-  .more-repos .label{font-family:var(--mono); font-size:12px; color:var(--ink-soft); margin-bottom:12px;}
-  .repo-strip{display:flex; flex-wrap:wrap; gap:10px;}
-  .repo-strip a{font-family:var(--mono); font-size:12px; text-decoration:none; padding:7px 12px; border:1px solid var(--line); border-radius:4px; color:var(--ink); background:var(--paper-raised); transition:border-color .15s;}
-  .repo-strip a:hover{border-color:var(--amber);}
-
-  /* ---------- Blog ---------- */
-  /* Pillars: one joined "lane" strip, deliberately unlike post cards */
-  .pillar-label,.posts-label{font-family:var(--mono); font-size:11.5px; letter-spacing:0.12em; text-transform:uppercase; color:var(--teal); margin-bottom:12px; display:flex; align-items:center; gap:10px;}
-  .pillar-label::after,.posts-label::after{content:''; flex:1; height:1px; background:var(--line);}
-  .pillar-grid{display:grid; grid-template-columns:repeat(4,1fr); margin-bottom:44px; background:var(--deep); color:var(--on-deep); border-radius:4px; border-top:4px solid var(--amber); overflow:hidden;}
-  .pillar-card{padding:24px 20px 26px; border-left:1px solid rgba(245,246,242,0.14); position:relative;}
-  .pillar-card:first-child{border-left:none;}
-  .pillar-card .num{font-family:var(--mono); font-weight:800; font-size:34px; line-height:1; color:#D9A34A; margin-bottom:14px; letter-spacing:-0.02em;}
-  .pillar-card h4{font-family:var(--mono); font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:0.07em; margin-bottom:10px; line-height:1.4;}
-  .pillar-card p{font-size:12.5px; color:rgba(245,246,242,0.74); line-height:1.55;}
-  @media (max-width:900px){
-    .pillar-grid{grid-template-columns:1fr 1fr;}
-    .pillar-card:nth-child(3){border-left:none;}
-    .pillar-card:nth-child(n+3){border-top:1px solid rgba(245,246,242,0.14);}
-  }
-  @media (max-width:480px){
-    .pillar-grid{grid-template-columns:1fr;}
-    .pillar-card{border-left:none; border-top:1px solid rgba(245,246,242,0.14);}
-    .pillar-card:first-child{border-top:none;}
-  }
-
-  .blog-card{background:var(--paper-raised); border:1px solid var(--line); border-radius:8px; padding:32px; display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; margin-bottom:24px;}
-  .blog-card p{color:var(--ink-soft); max-width:520px;}
-  .post-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px;}
-  @media (max-width:900px){.post-grid{grid-template-columns:1fr 1fr;}}
-  @media (max-width:640px){.post-grid{grid-template-columns:1fr;}}
-  .post-card{background:var(--paper-raised); border:1px solid var(--line); border-radius:8px; padding:0; overflow:hidden; text-decoration:none; color:var(--ink); display:flex; flex-direction:column; transition:box-shadow .15s, transform .15s;}
-  .post-card:hover{box-shadow:4px 5px 0 var(--line); transform:translateY(-2px);}
-  .post-thumb{aspect-ratio:16/9; width:100%; background:var(--deep); overflow:hidden; border-bottom:1px solid var(--line);}
-  .post-thumb img{width:100%; height:100%; object-fit:cover; transition:transform .3s ease;}
-  .post-card:hover .post-thumb img{transform:scale(1.04);}
-  .post-thumb.placeholder{display:flex; align-items:center; justify-content:center; font-family:var(--mono); font-weight:800; font-size:20px; letter-spacing:0.1em; color:var(--amber);}
-  .post-body{padding:18px 20px 20px; display:flex; flex-direction:column; flex:1;}
-  .post-more{font-family:var(--mono); font-size:12px; color:var(--teal); margin-top:auto; padding-top:14px;}
-  .post-date{font-family:var(--mono); font-size:11px; color:var(--amber-deep); letter-spacing:0.04em; margin-bottom:10px;}
-  .post-title{font-weight:700; font-size:15.5px; margin-bottom:8px; line-height:1.35;}
-  .post-excerpt{color:var(--ink-soft); font-size:13.5px; line-height:1.5;}
-  .post-status{font-family:var(--mono); font-size:12.5px; color:var(--ink-soft); grid-column:1/-1; padding:8px 0;}
-
-  /* ---------- Resume ---------- */
-  .resume-card{background:var(--deep); color:var(--on-deep); border-radius:10px; padding:40px; display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap;}
-  .resume-card h3{font-size:22px; font-weight:700; margin-bottom:8px;}
-  .resume-card p{color:#AEB8CC; max-width:440px; font-size:14.5px;}
-  .resume-card .btn-primary{background:var(--amber); color:var(--deep);}
-  .resume-card .btn-primary:hover{box-shadow:3px 4px 0 var(--on-deep);}
-  .resume-actions{display:flex; gap:14px; flex-wrap:wrap;}
-
-  /* ---------- Contact ---------- */
-  .contact-links{display:flex; gap:14px; flex-wrap:wrap; margin:28px 0 30px;}
-  .contact-links a{font-family:var(--mono); font-size:13.5px; text-decoration:none; padding:12px 18px; border:1px solid var(--ink); border-radius:3px; display:inline-flex; align-items:center; gap:8px; transition:transform .15s, box-shadow .15s;}
-  .contact-links a:hover{transform:translateY(-2px); box-shadow:3px 4px 0 var(--teal);}
-  .contact-links a.primary{background:var(--ink); color:var(--paper-raised); border-color:var(--ink);}
-  .contact-links a.primary:hover{box-shadow:3px 4px 0 var(--amber);}
-  .status-line{font-family:var(--mono); font-size:12.5px; color:var(--ink-soft); border-top:1px solid var(--line); padding-top:18px; display:flex; align-items:center; gap:8px;}
-
-  footer{padding:40px 0 60px; text-align:center;}
-  footer p{font-family:var(--mono); font-size:12px; color:var(--ink-soft);}
-
-  /* ---------- Scroll reveal ---------- */
-  .reveal{opacity:0; transform:translateY(26px); transition:opacity .7s ease, transform .7s ease;}
-  .reveal.visible{opacity:1; transform:translateY(0);}
 </style>
 </head>
 <body>
-
 <header class="nav">
   <div class="nav-inner">
     <div class="nav-left">
-      <div class="logo">D.SANTIAGO<span>_</span></div>
-      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">🌙</button>
+      <a class="logo" href="/" style="text-decoration:none">D.SANTIAGO<span>_</span></a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">☀</button>
     </div>
     <div class="nav-right">
       <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">MENU</button>
     </div>
     <nav>
       <ul id="navList">
-        <li><a href="#about" data-nav="about">About</a></li>
-        <li><a href="#skills" data-nav="skills">Skills</a></li>
-        <li><a href="#experience" data-nav="experience">Experience</a></li>
-        <li><a href="#projects" data-nav="projects">Projects</a></li>
-        <li><a href="/books/">Books</a></li>
-        <li><a href="#tools" data-nav="tools">Tools</a></li>
-        <li><a href="#blog" data-nav="blog">Blog</a></li>
-        <li><a href="#contact" data-nav="contact">Contact</a></li>
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#skills">Skills</a></li>
+        <li><a href="/#experience">Experience</a></li>
+        <li><a href="/#projects">Projects</a></li>
+        <li><a href="/books/" class="active">Books</a></li>
+        <li><a href="/#tools">Tools</a></li>
+        <li><a href="/#blog">Blog</a></li>
+        <li><a href="/#contact">Contact</a></li>
       </ul>
     </nav>
   </div>
 </header>
-
-<main>
-  <!-- HERO -->
-  <section class="hero">
+  <div class="top-bar">
     <div class="wrap">
-      <div class="hero-grid">
-        <div>
-          <div class="eyebrow">Security Operations Focus · Northampton, PA</div>
-          <h1>A decade keeping critical systems running under pressure. Now <em>I watch for what breaks them.</em></h1>
-          <p class="lede">I'm Daniel Santiago. Twelve years running Walmart's first fully dot-com fulfillment center taught me to keep critical systems running under pressure. Now I'm bringing that same instinct to security operations: log analysis, threat detection, and incident response.</p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#contact">Let's Connect</a>
-            <a class="btn btn-ghost" href="Daniel_Santiago_Resume.pdf" target="_blank" rel="noopener">Download Résumé</a>
-          </div>
-          <div class="fact-strip">
-            <div class="fact">
-              <div class="k">Currently</div>
-              <div class="v">Continuous Skills &amp; Development Leader · Walmart</div>
-            </div>
-            <div class="fact">
-              <div class="k">Certified</div>
-              <div class="v">CompTIA Security+ · Antisyphon Trained</div>
-            </div>
-            <div class="fact">
-              <div class="k">Target Role</div>
-              <div class="v">SOC Analyst</div>
-            </div>
-          </div>
-        </div>
-        <div class="hero-visual">
-          <div class="photo-frame">
-            <img src="photo.jpg?v=3" alt="Daniel Santiago" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="avatar-fallback" style="display:none;">DS</div>
-          </div>
-          <div class="badge">
-            <div class="badge-top">
-              <div class="badge-id">ID // SEC-2026-0091</div>
-              <div class="badge-status"><span class="dot"></span>ACCESS: GRANTED</div>
-            </div>
-            <div class="badge-name">Daniel Santiago</div>
-            <div class="badge-role">Targeting: SOC Analyst</div>
-            <div class="badge-tags">
-              <span class="tag">LOG ANALYSIS</span>
-              <span class="tag">THREAT DETECTION</span>
-              <span class="tag">INCIDENT RESPONSE</span>
-            </div>
-            <div class="barcode" aria-hidden="true">
-              <span style="height:14px"></span><span style="height:20px"></span><span style="height:10px"></span><span style="height:18px"></span><span style="height:8px"></span><span style="height:22px"></span><span style="height:12px"></span><span style="height:16px"></span><span style="height:9px"></span><span style="height:20px"></span><span style="height:13px"></span><span style="height:17px"></span>
-            </div>
+      <a class="back-link" href="/">← Back to portfolio</a>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="header">
+      <div class="eyebrow">Security Reading List</div>
+      <h1>Books worth a practitioner's time.</h1>
+      <p class="lede">Reviews written from a working security perspective: what each book actually teaches you about the job, not just a summary of the plot.</p>
+    </div>
+
+    <div class="book-grid">
+      <a class="book-card" href="/books/the-cuckoos-egg/">
+        <img src="https://covers.openlibrary.org/b/id/7880307-M.jpg" alt="The Cuckoo's Egg book cover">
+        <div class="book-card-body">
+          <div class="book-card-title">The Cuckoo's Egg</div>
+          <div class="book-card-author">Cliff Stoll · 1989 · Nonfiction</div>
+          <div class="book-card-take">A $0.75 accounting error leads to the first documented case of state-sponsored hacking, and a hands-on lesson in threat hunting before the term existed.</div>
+          <div class="book-card-tags">
+            <span class="book-tag">Threat Hunting</span>
+            <span class="book-tag">Honeypots</span>
+            <span class="book-tag">OSINT</span>
+            <span class="book-tag">Incident Response</span>
+            <span class="book-tag">Nation-State</span>
           </div>
         </div>
-      </div>
+        <div class="book-card-arrow">Read →</div>
+      </a>
     </div>
-  </section>
 
-  <!-- ABOUT -->
-  <section id="about" class="band">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <span class="section-num">01 · About</span>
-        <h2>Ten years in the operational trenches makes the framework real.</h2>
-      </div>
-      <div class="about-body reveal">
-        <p>I spent over a decade inside the operations engine of a Fortune 5 company, running logistics, leading incident triage for enterprise "war rooms," and hardening access controls across 25+ role types, long before I had a formal title for it. Somewhere in there I realized I wasn't just running operations, I was securing them.</p>
-        <blockquote class="pull">The frameworks I study now, like NIST CSF, Zero Trust, and least privilege, aren't theory to me. I spent ten years living the operational chaos they exist to prevent.</blockquote>
-        <p>That realization turned into a B.S. in Cybersecurity (3.91 GPA, Summa Cum Laude, Data Analytics concentration), a CompTIA Security+ certification, and Antisyphon training in SOC core skills and AI incident response. I'm channeling a decade of operational discipline into log analysis, threat detection, and incident response.</p>
-        <p>Outside of work, I'm a new dad, and most of my "why" these days comes from watching my daughter experience things for the first time. When I'm not deep in a security rabbit hole, you'll find me chasing new towns, new food, and new experiences, and I know that is true because my wife has occasionally instituted the occasional "no more cyber security this week" rule, so I'm either doing something right by the people in my network, or I'm becoming a little obsessed. I co-founded <strong>Lehigh Valley Rent-a-Chef</strong>, used to compete with a powerlifting group through a gym called Iron Core Fitness, snowboard, and ride motorcycle. I also spent time doing equine therapy with my own horse, Maverick, working with clients facing neurological deficiencies.</p>
-        <div class="interest-list">
-          <span class="tag">Powerlifting</span>
-          <span class="tag">Snowboarding</span>
-          <span class="tag">Motorcycling</span>
-          <span class="tag">Equine Therapy</span>
-          <span class="tag">New Dad</span>
-          <span class="tag">Rent-a-Chef Co-Founder</span>
-        </div>
-        <blockquote class="pull" style="margin-top:32px;">"He leads with patience, encouragement, and a collaborative spirit."<br><span style="font-family:var(--mono); font-size:12.5px; color:var(--ink-soft); font-weight:400;">Angela Pope, CyberSNHUper President, Southern New Hampshire University</span></blockquote>
-        <p class="cta-line">If you're building a team that needs someone who's already lived the operational side of the risk they're managing, <a href="#contact">let's talk</a>.</p>
-      </div>
-    </div>
-  </section>
-
-  <div class="wrap divider"><div class="barcode"><span style="height:10px"></span><span style="height:16px"></span><span style="height:8px"></span><span style="height:20px"></span><span style="height:12px"></span><span style="height:18px"></span><span style="height:9px"></span><span style="height:14px"></span></div></div>
-
-  <!-- SKILLS -->
-  <section id="skills">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <span class="section-num">02 · Skills &amp; Certifications</span>
-        <h2>What I bring to a security team.</h2>
-        <p class="section-sub">I organize this honestly: what I'm actively using in real work, what I'm actively studying, and what I have foundational exposure to. No overclaiming.</p>
-      </div>
-      <div class="legend reveal">
-        <span><span class="sdot active"></span>Actively Using</span>
-        <span><span class="sdot studying"></span>Studying</span>
-        <span><span class="sdot foundational"></span>Foundational</span>
-      </div>
-      <div class="skills-grid reveal">
-        <div class="skill-cat">
-          <h3>Certifications &amp; Training</h3>
-          <ul>
-            <li>CompTIA Security+ (SY0-701) <span class="skill-status is-active"><span class="sdot active"></span>Active</span></li>
-            <li>Antisyphon: SOC Core Skills in the Age of AI <span class="skill-status is-active"><span class="sdot active"></span>Active</span></li>
-            <li>Antisyphon: Preparing IR for AI Incidents <span class="skill-status is-active"><span class="sdot active"></span>Active</span></li>
-            <li>Google Cloud Cybersecurity Professional <span class="skill-status is-active"><span class="sdot active"></span>Active</span></li>
-            <li>Palo Alto Cybersecurity Professional <span class="skill-status is-active"><span class="sdot active"></span>Active</span></li>
-            <li>Microsoft SC-500 <span class="skill-status is-studying"><span class="sdot studying"></span>Studying</span></li>
-          </ul>
-        </div>
-        <div class="skill-cat">
-          <h3>SOC &amp; Detection</h3>
-          <ul>
-            <li>Log Analysis &amp; Incident Triage <span class="skill-status is-active"><span class="sdot active"></span>Active</span></li>
-            <li>Endpoint Forensics (Velociraptor) <span class="skill-status is-active"><span class="sdot active"></span>Active</span></li>
-            <li>Vulnerability Mgmt (CVSS/EPSS/KEV) <span class="skill-status is-active"><span class="sdot active"></span>Active</span></li>
-            <li>NIST CSF · CIS Controls · ISO 27001 <span class="skill-status is-active"><span class="sdot active"></span>Active</span></li>
-            <li>IAM · RBAC · Access Governance <span class="skill-status is-active"><span class="sdot active"></span>Active</span></li>
-            <li>MITRE ATT&amp;CK <span class="skill-status"><span class="sdot foundational"></span>Foundational</span></li>
-          </ul>
-        </div>
-        <div class="skill-cat">
-          <h3>Transferable Skills</h3>
-          <ul>
-            <li>Enterprise change management <span class="skill-status is-active"><span class="sdot active"></span>Active</span></li>
-            <li>Cross-functional stakeholder comms <span class="skill-status is-active"><span class="sdot active"></span>Active</span></li>
-            <li>Governance &amp; SOP documentation <span class="skill-status is-active"><span class="sdot active"></span>Active</span></li>
-            <li>Training &amp; workforce development <span class="skill-status is-active"><span class="sdot active"></span>Active</span></li>
-          </ul>
-        </div>
-        <div class="skill-cat">
-          <h3>Tools &amp; Platforms</h3>
-          <ul>
-            <li>Okta · Azure AD · Active Directory · GCP <span class="skill-status is-active"><span class="sdot active"></span>Active</span></li>
-            <li>AWS GuardDuty · Security Hub <span class="skill-status is-active"><span class="sdot active"></span>Active</span></li>
-            <li>Python · FastAPI · Docker <span class="skill-status is-active"><span class="sdot active"></span>Active</span></li>
-            <li>Kali Linux · Burp Suite · Nmap · Metasploit <span class="skill-status"><span class="sdot foundational"></span>Foundational</span></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="wrap divider"><div class="barcode"><span style="height:12px"></span><span style="height:18px"></span><span style="height:9px"></span><span style="height:16px"></span><span style="height:20px"></span><span style="height:8px"></span><span style="height:14px"></span><span style="height:19px"></span></div></div>
-
-  <!-- EXPERIENCE -->
-  <section id="experience" class="band">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <span class="section-num">03 · Experience</span>
-        <h2>Where the operational background becomes the security skill set.</h2>
-      </div>
-      <div class="timeline reveal">
-        <div class="tl-item">
-          <div class="tl-date">APR 2023 – PRESENT</div>
-          <div class="tl-role">Continuous Skills &amp; Development Leader</div>
-          <div class="tl-org">Walmart · Bethlehem, PA</div>
-          <ul>
-            <li>Architected a 3-tier access control standard (testing, validation, certification) before granting production access, reducing unauthorized access risk across 500+ operational roles.</li>
-            <li>Served as security SME on an enterprise system migration, coordinating change-management approval across legal, IT, and operations with zero data integrity incidents.</li>
-            <li>Authored 20+ network-wide security procedures aligned to NIST CSF, establishing repeatable governance documentation.</li>
-            <li>Built role-based training matrices that cut facility turnover from 117% to under 10%.</li>
-          </ul>
-        </div>
-        <div class="tl-item">
-          <div class="tl-date">JAN 2016 – PRESENT</div>
-          <div class="tl-role">Systems Operator</div>
-          <div class="tl-org">Walmart · Bethlehem, PA</div>
-          <ul>
-            <li>Led incident triage for enterprise "war room" events affecting 1,000+ users, partnering with engineering to reduce MTTR.</li>
-            <li>Migrated 300+ roles from manual provisioning to AD group-based RBAC, enforcing least privilege and eliminating over-provisioning.</li>
-            <li>Hardened 200+ endpoints by restricting admin privileges and limiting access to approved applications.</li>
-            <li>Built security dashboards from database metrics to give leadership visibility into compliance and anomaly trends.</li>
-          </ul>
-        </div>
-        <div class="tl-item">
-          <div class="tl-date">JAN 2014 – MAR 2023</div>
-          <div class="tl-role">Area Manager / Shipping Lead</div>
-          <div class="tl-org">Walmart · Bethlehem, PA</div>
-          <ul>
-            <li>Managed logistics for teams of 30+, enforcing SLA and DOT/hazmat compliance through standardized SOPs and audits.</li>
-            <li>Primary escalation contact for high-priority disruptions, skills directly transferable to security incident response.</li>
-            <li>Led Kaizen process-improvement initiatives that doubled throughput (200 → 400 units/shift).</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="sub-block reveal">
-        <h3>Education</h3>
-        <div class="edu-highlight">
-          <div class="edu-info">
-            <div class="deg">B.S. in Cybersecurity</div>
-            <div class="concentration">Data Analytics Concentration</div>
-            <div class="school">Southern New Hampshire University · Manchester, NH</div>
-            <div class="meta">Graduated 2026 · GPA: 3.91 / 4.0 · <span class="highlight">Summa Cum Laude</span></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="sub-block reveal">
-        <h3>Community &amp; Conferences</h3>
-        <ul class="award-list">
-          <li><span>BSides Harrisburg &middot; Security Conference Attendee, building presence with BSides Harrisburg &amp; Philadelphia founders</span><span class="yr">2026</span></li>
-          <li><span>Cloud Security Alliance &middot; Lehigh Valley Chapter Member</span><span class="yr">2026</span></li>
-          <li><span>National Cyber League &middot; Cybersecurity Competitor</span><span class="yr">2025</span></li>
-          <li><span>Trace Labs &middot; OSINT Community Member</span><span class="yr">2026</span></li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <div class="wrap divider"><div class="barcode"><span style="height:16px"></span><span style="height:9px"></span><span style="height:20px"></span><span style="height:12px"></span><span style="height:18px"></span><span style="height:8px"></span><span style="height:14px"></span></div></div>
-
-  <!-- PROJECTS -->
-  <section id="projects">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <span class="section-num">04 · Projects</span>
-        <h2>Built to prove the frameworks, not just describe them.</h2>
-      </div>
-      <div class="proj-grid reveal">
-        <div class="proj-card">
-          <div class="proj-top">
-            <h3>Security Findings Translator</h3>
-            <div style="display:flex; gap:12px; align-items:center;">
-              <a class="proj-link" style="color:var(--amber-deep); font-weight:700;" href="https://security-findings-translator.onrender.com/" target="_blank" rel="noopener">● Live Demo →</a>
-              <a class="proj-link" href="https://github.com/DanielSantiagoSec/security-findings-translator" target="_blank" rel="noopener">GitHub →</a>
-            </div>
-          </div>
-          <p>An AI-powered tool that parses AWS GuardDuty, Security Hub, and Nessus findings and translates them into audience-specific language for 7 stakeholder types. Built a composite risk-scoring engine (CVSS + EPSS + CISA KEV) and caught a scoring bug that under-rated a Log4Shell-severity finding. Try it live, no signup needed. (Free hosting: first load may take ~30s.)</p>
-          <div class="stack"><span>Python</span><span>FastAPI</span><span>PostgreSQL</span><span>Docker</span><span>Gemini AI</span></div>
-        </div>
-        <div class="proj-card">
-          <div class="proj-top">
-            <h3>IAM Risk Analysis</h3>
-            <a class="proj-link" href="https://github.com/DanielSantiagoSec/IAM-Risk-Analysis" target="_blank" rel="noopener">GitHub →</a>
-          </div>
-          <p>A strategic security framework for access control (RBAC), risk mitigation, and threat characterization, built to bridge the gap between written policy and real-world protection.</p>
-          <div class="stack"><span>RBAC</span><span>Risk Mgmt</span><span>Documentation</span></div>
-        </div>
-        <div class="proj-card">
-          <div class="proj-top">
-            <h3>Cloud Security Breach Response</h3>
-          </div>
-          <p>Simulated an enterprise cloud breach on Google Cloud Platform (Cymbal Bank), containing it by isolating compromised VMs, revoking public access, and restoring from verified snapshots. Engineered an IAM framework with RBAC, MFA, and Okta/Azure AD SSO for full lifecycle governance.</p>
-          <div class="stack"><span>GCP</span><span>IAM</span><span>Okta</span><span>Azure AD</span></div>
-        </div>
-        <div class="proj-card">
-          <div class="proj-top">
-            <h3>M.O.M.: Text Adventure RPG</h3>
-            <a class="proj-link" href="https://github.com/DanielSantiagoSec/M.O.M.-Text-Adventure-RPG" target="_blank" rel="noopener">GitHub →</a>
-          </div>
-          <p>A short text-adventure game built in Python. A fun side project that shows the problem-solving and logic-building process behind the security work.</p>
-          <div class="stack"><span>Python</span><span>Game Dev</span></div>
-        </div>
-      </div>
-
-      <div class="more-repos reveal">
-        <div class="label">MORE REPOSITORIES //</div>
-        <div class="repo-strip">
-          <a href="https://github.com/DanielSantiagoSec/Network-Infrastructure-Project" target="_blank" rel="noopener">Network Infrastructure Project</a>
-          <a href="https://github.com/DanielSantiagoSec/Network-Access-Control-Lab" target="_blank" rel="noopener">Network Access Control Lab</a>
-          <a href="https://github.com/DanielSantiagoSec/Data-Retention-Cloud-Migration-Strategy" target="_blank" rel="noopener">Data Retention &amp; Cloud Migration</a>
-          <a href="https://github.com/DanielSantiagoSec/Network-Security-Architecture-Analysis" target="_blank" rel="noopener">Network Security Architecture</a>
-          <a href="https://github.com/DanielSantiagoSec/Networking-Security-Series-Projects" target="_blank" rel="noopener">Networking &amp; Security Series</a>
-          <a href="https://github.com/DanielSantiagoSec/TryHackMe-Labs" target="_blank" rel="noopener">TryHackMe Labs</a>
-          <a href="https://github.com/DanielSantiagoSec/2025-NSA-Codebreaker-Challenge" target="_blank" rel="noopener">2025 NSA Codebreaker Challenge</a>
-          <a href="https://github.com/DanielSantiagoSec?tab=repositories" target="_blank" rel="noopener">View all on GitHub →</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="wrap divider"><div class="barcode"><span style="height:14px"></span><span style="height:20px"></span><span style="height:10px"></span><span style="height:18px"></span><span style="height:8px"></span><span style="height:22px"></span><span style="height:12px"></span></div></div>
-    <!-- TOOLS -->
-  <section id="tools">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <span class="section-num">05 · Tools</span>
-        <h2>Free tools I've shipped for the security community.</h2>
-        <p class="section-sub">Live, open source, and free to use. Built to solve real problems practitioners told me about.</p>
-      </div>
-      <div class="blog-card reveal">
-        <div>
-          <h3 style="font-size:18px; font-weight:700; margin-bottom:8px;">Security Findings Translator</h3>
-          <p>Translate GuardDuty, Security Hub, and Nessus findings into plain language for any audience, with EPSS + CISA KEV risk scoring. One-click demo, no signup. Bring your own free Gemini key for unlimited translations.</p>
-        </div>
-        <a class="btn btn-primary" href="https://security-findings-translator.onrender.com" target="_blank" rel="noopener">Launch Tool →</a>
-      </div>
-    </div>
-  </section>
-  <!-- BLOG -->
-  <section id="blog" class="band">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <span class="section-num">06 · Blog</span>
-        <h2>Writing my way through the pivot.</h2>
-        <p class="section-sub">Four pillars, so every post has a lane instead of being whatever caught my attention that week.</p>
-      </div>
-      <div class="pillar-label reveal">The four lanes I write in</div>
-      <div class="pillar-grid reveal">
-        <div class="pillar-card">
-          <div class="num">01</div>
-          <h4>SOC &amp; Detection</h4>
-          <p>Technical breakdowns: log analysis, findings, and detections, explained clearly enough for any stakeholder to act on.</p>
-        </div>
-        <div class="pillar-card">
-          <div class="num">02</div>
-          <h4>IAM &amp; Access Governance</h4>
-          <p>Identity is the real attack surface. Practical lessons from building access controls at enterprise scale.</p>
-        </div>
-        <div class="pillar-card">
-          <div class="num">03</div>
-          <h4>Pivoting Into Cyber</h4>
-          <p>What it actually takes to move from operations into security, for anyone making the same jump.</p>
-        </div>
-        <div class="pillar-card">
-          <div class="num">04</div>
-          <h4>Field Notes from the Ops Floor</h4>
-          <p>Ten years of enterprise operations, translated into security lessons most people in this field never lived.</p>
-        </div>
-      </div>
-      <div class="blog-card reveal">
-        <div>
-          <p>I write about IAM, cloud security, and what it's actually like breaking into cybersecurity from an operations background, documenting the pivot in real time.</p>
-        </div>
-        <a class="btn btn-primary" href="https://medium.com/@danielsantiagosec" target="_blank" rel="noopener">Read on Medium →</a>
-      </div>
-      <div class="posts-label reveal">Latest posts from Medium</div>
-      <div class="post-grid reveal" id="postGrid">
-        <div class="post-status">Loading latest posts…</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- RESUME -->
-  <section id="resume">
-    <div class="wrap">
-      <div class="resume-card reveal">
-        <div>
-          <h3>Want the full breakdown?</h3>
-          <p>Download my résumé for the complete work history, technical skill set, and certifications.</p>
-        </div>
-        <div class="resume-actions">
-          <a class="btn btn-primary" href="Daniel_Santiago_Resume.pdf" target="_blank" rel="noopener">Download PDF ↓</a>
-          <a class="btn btn-ghost-dark" href="https://www.linkedin.com/in/danielsantiagosec/" target="_blank" rel="noopener">Or Connect on LinkedIn →</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact" class="band">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <span class="section-num">07 · Contact</span>
-        <h2>Let's talk about working together.</h2>
-        <p class="section-sub">I'm actively growing into a cybersecurity role focused on IAM and cloud security. If you're building a team that needs someone who's already lived the operational reality security frameworks are meant to protect, reach out.</p>
-      </div>
-      <div class="contact-links reveal">
-        <a class="primary" href="mailto:danny9635@live.com">✉ Email Me</a>
-        <a href="https://www.linkedin.com/in/danielsantiagosec/" target="_blank" rel="noopener">↗ LinkedIn</a>
-        <a href="https://github.com/DanielSantiagoSec" target="_blank" rel="noopener">↗ GitHub</a>
-        <a href="https://medium.com/@danielsantiagosec" target="_blank" rel="noopener">↗ Blog</a>
-      </div>
-      <div class="status-line reveal"><span class="sdot active"></span>Actively building toward a cybersecurity role · Open to opportunities in IAM &amp; Cloud Security · Northampton, PA</div>
-    </div>
-  </section>
-</main>
-
-<footer>
-  <p>&copy; 2026 Daniel Santiago · Built with GitHub Pages</p>
-</footer>
-
+    <div class="empty-note">More reviews coming as I read them. Next up: TBD</div>
+  </div>
 <script>
   const navToggle = document.getElementById('navToggle');
   const navList = document.getElementById('navList');
@@ -691,12 +167,6 @@
     const open = navList.classList.toggle('open');
     navToggle.setAttribute('aria-expanded', open);
   });
-  navList.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-    navList.classList.remove('open');
-    navToggle.setAttribute('aria-expanded', 'false');
-  }));
-
-  // ---- Theme toggle (light/dark) ----
   const root = document.documentElement;
   const themeToggle = document.getElementById('themeToggle');
   function applyTheme(t){
@@ -707,94 +177,6 @@
   themeToggle.addEventListener('click', () => {
     applyTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
   });
-
-  // ---- Auto-load latest Medium posts via RSS ----
-  (function loadMediumPosts(){
-    const grid = document.getElementById('postGrid');
-    const feedUrl = 'https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent('https://medium.com/feed/@danielsantiagosec');
-
-    fetch(feedUrl)
-      .then(res => res.json())
-      .then(data => {
-        if (data.status !== 'ok' || !data.items || !data.items.length){
-          throw new Error('No posts found');
-        }
-        grid.innerHTML = '';
-        data.items.slice(0, 6).forEach(item => {
-          const date = new Date(item.pubDate);
-          const dateStr = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-          const tmp = document.createElement('div');
-          tmp.innerHTML = item.description || '';
-          let excerpt = (tmp.textContent || tmp.innerText || '').trim().slice(0, 120);
-          if (excerpt.length === 120) excerpt += '…';
-
-          const card = document.createElement('a');
-          card.className = 'post-card';
-          card.href = item.link;
-          card.target = '_blank';
-          card.rel = 'noopener';
-          // Cover image: rss2json thumbnail, else first <img> in the post HTML
-          let imgUrl = item.thumbnail || '';
-          if (!imgUrl){
-            const m = /<img[^>]+src=["']([^"']+)["']/i.exec(item.content || item.description || '');
-            if (m) imgUrl = m[1];
-          }
-          const thumb = document.createElement('div');
-          thumb.className = 'post-thumb placeholder';
-          thumb.textContent = 'MEDIUM';
-          if (imgUrl){
-            const img = new Image();
-            img.alt = '';
-            img.referrerPolicy = 'no-referrer';
-            img.onload = () => { thumb.className = 'post-thumb'; thumb.textContent = ''; thumb.appendChild(img); };
-            img.src = imgUrl;
-          }
-          card.appendChild(thumb);
-          const body = document.createElement('div');
-          body.className = 'post-body';
-          body.innerHTML = `
-            <div class="post-date">${dateStr}</div>
-            <div class="post-title">${item.title}</div>
-            <div class="post-excerpt">${excerpt}</div>
-            <div class="post-more">Read on Medium →</div>
-          `;
-          card.appendChild(body);
-          grid.appendChild(card);
-        });
-      })
-      .catch(() => {
-        grid.innerHTML = '<div class="post-status">Couldn\'t load recent posts right now. <a href="https://medium.com/@danielsantiagosec" target="_blank" rel="noopener" style="color:var(--teal); text-decoration:underline;">read them on Medium →</a></div>';
-      });
-  })();
-
-  // ---- Fade in on scroll ----
-  const revealEls = document.querySelectorAll('.reveal');
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting){
-        entry.target.classList.add('visible');
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0, rootMargin: '0px 0px -8% 0px' });
-  revealEls.forEach(el => revealObserver.observe(el));
-
-  // ---- Active nav link on scroll ----
-  const navLinks = document.querySelectorAll('nav a[data-nav]');
-  const trackedSections = ['about','skills','experience','projects','tools','blog','contact']
-    .map(id => document.getElementById(id))
-    .filter(Boolean);
-  const navObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting){
-        navLinks.forEach(l => l.classList.remove('active'));
-        const match = document.querySelector(`nav a[data-nav="${entry.target.id}"]`);
-        if (match) match.classList.add('active');
-      }
-    });
-  }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
-  trackedSections.forEach(sec => navObserver.observe(sec));
 </script>
-
 </body>
 </html>
