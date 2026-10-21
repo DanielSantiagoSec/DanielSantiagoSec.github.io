@@ -1,0 +1,72 @@
+[
+  {
+    "title": "What Facebook Taught One Woman About Power And What It Should Teach the Rest of Us",
+    "link": "https://medium.com/@danielsantiagosec/what-facebook-taught-one-woman-about-power-and-what-it-should-teach-the-rest-of-us-aac32a983dac",
+    "date": "Wed, 26 Aug 2026 17:35:54 GMT",
+    "excerpt": "Created by Gemini Careless People by Sarah Wynn-Williams | Practitioner Review Meta tried to legally block this book from being promoted. The author was ordered",
+    "img": "https://cdn-images-1.medium.com/max/1024/1*MZRPlgvM7VLBm-E3RVLpzQ.jpeg"
+  },
+  {
+    "title": "A $0.75 Accounting Error, a KGB- Linked Hacker, and What 1986 Still Has to Teach Us",
+    "link": "https://medium.com/@danielsantiagosec/a-0-75-accounting-error-a-kgb-linked-hacker-and-what-1986-still-has-to-teach-us-d8eb52429f3a",
+    "date": "Wed, 26 Aug 2026 17:17:13 GMT",
+    "excerpt": "Made with Gemini The Cuckoo’s Egg by Cliff Stoll | Practitioner Review I grabbed this one from my local library. Not because I found it on a curated list or saw",
+    "img": "https://cdn-images-1.medium.com/max/1024/1*BQCMlY6CkqV8T1J2BTAsBw.jpeg"
+  },
+  {
+    "title": "I Built the Automation. Then Someone Asked Me to Explain the Permission Model.",
+    "link": "https://medium.com/@danielsantiagosec/i-built-the-automation-then-someone-asked-me-to-explain-the-permission-model-72f159c6e59d",
+    "date": "Fri, 17 Jul 2026 18:57:46 GMT",
+    "excerpt": "That second part is what actually matters. When I finished my joiner/mover/leaver automation lab, I thought the hard part was done. Three PowerShell scripts, Mi",
+    "img": "https://cdn-images-1.medium.com/max/1024/1*RyRAtqcpUoivASC5F80raw.png"
+  },
+  {
+    "title": "I Applied for an IAM Security Role and Then Had to Build the Lab to Back It Up",
+    "link": "https://medium.com/@danielsantiagosec/i-applied-for-an-iam-security-role-and-then-had-to-build-the-lab-to-back-it-up-d6c89bc128fa",
+    "date": "Thu, 16 Jul 2026 01:44:54 GMT",
+    "excerpt": "A career transitioner’s honest account of going from zero to working Graph PowerShell scripts in a couple of hours. I submitted an application for a Information",
+    "img": "https://cdn-images-1.medium.com/max/1024/1*8aA1hrv31baRdvDgdhQTQg.png"
+  },
+  {
+    "title": "Why CVSS Scores Are Lying to You And What to Use Instead",
+    "link": "https://medium.com/@danielsantiagosec/why-cvss-scores-are-lying-to-you-and-what-to-use-instead-a20fafb945bf",
+    "date": "Fri, 03 Jul 2026 03:59:14 GMT",
+    "excerpt": "Security Findings Translator Web Application When I started building a security tool, I assumed CVSS was the gold standard for risk prioritization. I was wrong.",
+    "img": "https://cdn-images-1.medium.com/max/1024/1*ifIRok3brNOiEO-YRcxNzg.png"
+  },
+  {
+    "title": "I Built a Conditional Access Policy in Okta — Here’s What Ten Years in Operations Taught Me About…",
+    "link": "https://medium.com/@danielsantiagosec/i-built-a-conditional-access-policy-in-okta-heres-what-ten-years-in-operations-taught-me-about-da33f8d2c95f",
+    "date": "Fri, 03 Jul 2026 03:05:38 GMT",
+    "excerpt": "I Built a Conditional Access Policy in Okta — Here’s What Ten Years in Operations Taught Me About It For ten years, I ran enterprise operations for a Fortune 5 ",
+    "img": "https://cdn-images-1.medium.com/max/975/1*_abndrukD4D-7PPITuL67Q.png"
+  },
+  {
+    "title": "I Built a Security Tool That Translates Hacker Alerts Into Plain English — Here’s What I Learned",
+    "link": "https://medium.com/@danielsantiagosec/i-built-a-security-tool-that-translates-hacker-alerts-into-plain-english-heres-what-i-learned-1367faaeb139",
+    "date": "Thu, 25 Jun 2026 13:21:24 GMT",
+    "excerpt": "By Daniel Santiago The Problem Nobody Talks About Imagine your company’s alarm system goes off in the middle of the night. The security guard runs to check it a",
+    "img": "https://cdn-images-1.medium.com/max/975/1*vct8HEYGLmPJ4GX1hzqIGw.png"
+  },
+  {
+    "title": "From WarGames to Darknet Diaries: My Cybersecurity Origin Story",
+    "link": "https://medium.com/@danielsantiagosec/from-wargames-to-darknet-diaries-my-cybersecurity-origin-story-3ac5c7ed8a7d",
+    "date": "Mon, 22 Jun 2026 18:14:26 GMT",
+    "excerpt": "Simply Cyber and Darknet Diaries shirts Lately, I’ve become increasingly curious about the pop culture moments that inspire people to explore cybersecurity. Whe",
+    "img": "https://cdn-images-1.medium.com/max/1024/1*M-ARn8ZOc8Bg9Q28C_HK_A.jpeg"
+  },
+  {
+    "title": "BSides Reflection: Burnout, Resilience, and the Human Side of Cybersecurity",
+    "link": "https://medium.com/@danielsantiagosec/bsides-reflection-burnout-resilience-and-the-human-side-of-cybersecurity-e3112687e335",
+    "date": "Mon, 01 Jun 2026 03:38:19 GMT",
+    "excerpt": "Bsides Harrisburg Key Note Caroline Wong Presentation Slide One of the most impactful sessions I attended at my first BSides conference wasn’t about malware ana",
+    "img": "https://cdn-images-1.medium.com/max/635/1*p6gtVkrIunp6lmj9NZazQA.png"
+  },
+  {
+    "title": "We’re Deploying AI Agents Everywhere… But Are We Losing Control?",
+    "link": "https://medium.com/@danielsantiagosec/were-deploying-ai-agents-everywhere-but-are-we-losing-control-900d13181d6e",
+    "date": "Thu, 07 May 2026 20:01:01 GMT",
+    "excerpt": "What I learned from a cybersecurity panel that completely changed how I think about AI security. I thought AI agents were just another productivity boost. You p",
+    "img": "https://medium.com/_/stat?event=post.clientViewed&referrerSource=full_rss&postId=900d13181d6e"
+  }
+]
