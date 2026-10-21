@@ -1,0 +1,52 @@
+name: Update Medium posts
+
+on:
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch Medium feed and write posts.json
+        run: |
+          curl -fsSL -A "Mozilla/5.0 (compatible; portfolio-feed-bot)" \
+            "https://medium.com/feed/@danielsantiagosec" -o feed.xml
+          python3 - <<'PY'
+          import json, re, html
+          import xml.etree.ElementTree as ET
+          ns = {"c": "http://purl.org/rss/1.0/modules/content/"}
+          root = ET.parse("feed.xml").getroot()
+          posts = []
+          for it in root.iter("item"):
+              full = it.findtext("c:encoded", default="", namespaces=ns) or it.findtext("description", default="")
+              m = re.search(r'<img[^>]+src=["\']([^"\']+)["\']', full)
+              text = html.unescape(re.sub(r"<[^>]+>", " ", full))
+              text = re.sub(r"\s+", " ", text).strip()
+              posts.append({
+                  "title": it.findtext("title", default=""),
+                  "link": (it.findtext("link", default="") or "").split("?")[0],
+                  "date": it.findtext("pubDate", default=""),
+                  "excerpt": text[:160],
+                  "img": m.group(1) if m else "",
+              })
+          if not posts:
+              raise SystemExit("No posts found in feed")
+          json.dump(posts[:10], open("posts.json", "w"), indent=2, ensure_ascii=False)
+          print("Wrote", len(posts[:10]), "posts")
+          PY
+          rm -f feed.xml
+
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@users.noreply.github.com"
+          git add posts.json
+          git diff --cached --quiet || git commit -m "Update Medium posts"
+          git push
