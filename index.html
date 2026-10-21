@@ -285,6 +285,13 @@
   /* ---------- Scroll reveal ---------- */
   .reveal{opacity:0; transform:translateY(26px); transition:opacity .7s ease, transform .7s ease;}
   .reveal.visible{opacity:1; transform:translateY(0);}
+  .more-roles{margin-top:22px; border-top:1px solid var(--line); padding-top:14px;}
+  .more-roles summary{font-family:var(--mono); font-size:12.5px; letter-spacing:0.06em; text-transform:uppercase; color:var(--teal); cursor:pointer; padding:6px 0; list-style:none;}
+  .more-roles summary::-webkit-details-marker{display:none;}
+  .more-roles summary::before{content:'+\00a0'; color:var(--amber);}
+  .more-roles[open] summary::before{content:'\2212\00a0';}
+  .more-roles .timeline{margin-top:18px;}
+  .tl-item.compact .tl-org{margin-bottom:0;}
 </style>
 </head>
 <body>
@@ -375,9 +382,9 @@
         <h2>Ten years in the operational trenches makes the framework real.</h2>
       </div>
       <div class="about-body reveal">
-        <p>I spent over a decade inside the operations engine of a Fortune 5 company, running logistics, leading incident triage for enterprise "war rooms," and hardening access controls across 25+ role types, long before I had a formal title for it. Somewhere in there I realized I wasn't just running operations, I was securing them.</p>
+        <p>I keep critical systems running under pressure. I've spent 12 years operating Walmart's first fully dot-com fulfillment center, the kind of place where something breaking at 2 am still has to ship on time. I fix broken access control. I migrated 20+ roles to AD group-based access and built a 3-tier certification standard that turned permission sprawl into something you can actually audit and pass.</p>
         <blockquote class="pull">The frameworks I study now, like NIST CSF, Zero Trust, and least privilege, aren't theory to me. I spent ten years living the operational chaos they exist to prevent.</blockquote>
-        <p>That realization turned into a B.S. in Cybersecurity (3.91 GPA, Summa Cum Laude, Data Analytics concentration), a CompTIA Security+ certification, and Antisyphon training in SOC core skills and AI incident response. I'm channeling a decade of operational discipline into log analysis, threat detection, and incident response.</p>
+        <p>I make security findings usable. My Security Findings Translator turns GuardDuty, Security Hub, and Nessus output into prioritized, plain-language guidance for seven different audiences using CVSS, EPSS, and CISA KEV, and on top of that, I lead skills development for 20+ roles while finishing a 3.91 Summa Cum Laude B.S. in Cybersecurity plus Security+, Google Cloud, and Palo Alto certs, all while working full-time. So if you're hiring for SOC, IAM, or security analyst work, what you get is someone who already knows how to own critical systems, earn trust across an org, and ship things that work.</p>
         <p>Outside of work, I'm a new dad, and most of my "why" these days comes from watching my daughter experience things for the first time. When I'm not deep in a security rabbit hole, you'll find me chasing new towns, new food, and new experiences, and I know that is true because my wife has occasionally instituted the occasional "no more cyber security this week" rule, so I'm either doing something right by the people in my network, or I'm becoming a little obsessed. I co-founded <strong>Lehigh Valley Rent-a-Chef</strong>, used to compete with a powerlifting group through a gym called Iron Core Fitness, snowboard, and ride motorcycle. I also spent time doing equine therapy with my own horse, Maverick, working with clients facing neurological deficiencies.</p>
         <div class="interest-list">
           <span class="tag">Powerlifting</span>
@@ -464,39 +471,156 @@
         <h2>Where the operational background becomes the security skill set.</h2>
       </div>
       <div class="timeline reveal">
-        <div class="tl-item">
-          <div class="tl-date">MAR 2023 – PRESENT</div>
-          <div class="tl-role">Continuous Skills &amp; Development Leader</div>
-          <div class="tl-org">Walmart · Bethlehem, PA</div>
-          <ul>
-            <li>Architected a 3-tier access control standard (testing, validation, certification) before granting production access, reducing unauthorized access risk across 500+ operational roles.</li>
-            <li>Served as security SME on an enterprise system migration, coordinating change-management approval across legal, IT, and operations with zero data integrity incidents.</li>
-            <li>Authored 20+ network-wide security procedures aligned to NIST CSF, establishing repeatable governance documentation.</li>
-            <li>Built role-based training matrices that cut facility turnover from 117% to under 10%.</li>
-          </ul>
-        </div>
-        <div class="tl-item">
-          <div class="tl-date">JAN 2019 – PRESENT</div>
-          <div class="tl-role">Systems Operator (Collateral Duty)</div>
-          <div class="tl-org">Walmart · Bethlehem, PA</div>
-          <ul>
-            <li>Led incident triage for enterprise "war room" events affecting 1,000+ users, partnering with engineering to reduce MTTR.</li>
-            <li>Migrated 20+ roles from manual provisioning to AD group-based RBAC, enforcing least privilege and eliminating over-provisioning.</li>
-            <li>Hardened 200+ endpoints by restricting admin privileges and limiting access to approved applications.</li>
-            <li>Built security dashboards from database metrics to give leadership visibility into compliance and anomaly trends.</li>
-          </ul>
-        </div>
-        <div class="tl-item">
-          <div class="tl-date">JAN 2014 – MAR 2023</div>
-          <div class="tl-role">Area Manager / Shipping Lead</div>
-          <div class="tl-org">Walmart · Bethlehem, PA</div>
-          <ul>
-            <li>Managed logistics for teams of 30+, enforcing SLA and DOT/hazmat compliance through standardized SOPs and audits.</li>
-            <li>Primary escalation contact for high-priority disruptions, skills directly transferable to security incident response.</li>
-            <li>Led Kaizen process-improvement initiatives that doubled throughput (200 → 400 units/shift).</li>
-          </ul>
-        </div>
+          <div class="tl-item">
+            <div class="tl-date">MAR 2023 – PRESENT</div>
+            <div class="tl-role">Continuous Skills &amp; Development Leader</div>
+            <div class="tl-org">Walmart · Bethlehem, PA</div>
+            <ul>
+              <li>Owned access-control governance and technical training for 20+ role types across 300+ associates at Walmart's first fully dot-com fulfillment center, architecting a 3-tier certification standard that gated all production system access through written testing, practical validation, and formal sign-off.</li>
+              <li>Served as security SME for the GLS to End Game enterprise-wide system migration, managing the transition with zero data integrity incidents.</li>
+              <li>Authored 20+ network-wide operational security procedures aligned to the NIST Cybersecurity Framework, standardizing security practice across the facility.</li>
+              <li>Redesigned the facility training matrix and performance development program, reducing associate turnover from 117% to under 10%.</li>
+              <li>Built and maintained competency frameworks, skill matrices, and LMS content that gave leadership real-time visibility into workforce readiness and training compliance across 20+ role types.</li>
+              <li>Led large-scale process change rollouts requiring rapid retraining of frontline workforces without disrupting operational throughput, bridging the gap between process design and floor-level execution.</li>
+              <li>Developed team leads and department managers into certified coaches through structured train-the-trainer programs, building an internal instructor bench that sustained standards at scale.</li>
+              <li>Operated cross-functionally with HR, safety, operations, and industrial engineering teams, translating complex operational and security requirements into training solutions and presenting measurable program impact to site leadership.</li>
+            </ul>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">JAN 2019 – PRESENT</div>
+            <div class="tl-role">Systems Operator (Collateral Duty)</div>
+            <div class="tl-org">Walmart · Bethlehem, PA</div>
+            <ul>
+              <li>Provide end-to-end IT help desk support across fulfillment, ecommerce, and supply chain environments, managing the full incident lifecycle from logging and triage through resolution and root cause analysis using platforms including ServiceNow and Jira.</li>
+              <li>Configure, deploy, and troubleshoot a broad range of warehouse technology including RF scanners, thermal label printers, conveyor terminals, and kiosks to keep fulfillment operations running without interruption.</li>
+              <li>Administer Windows 10/11 endpoints, Active Directory accounts, and Microsoft 365 services including Exchange Online, Teams, and SharePoint in domain environments supporting both office and warehouse staff.</li>
+              <li>Manage user access throughout the full identity lifecycle, including provisioning, deprovisioning, role-based access requests, and MFA enrollment, with a consistent focus on least-privilege principles and access governance.</li>
+              <li>Support enterprise supply chain platforms including Warehouse Management, Order Management, and Transportation Management Systems, maintaining enough operational context to triage effectively and escalate intelligently.</li>
+              <li>Deliver reliable technical support in 24/7 shift-based environments, including peak periods like Q4 and Prime Day, where operational pressure is high and downtime carries a direct cost to the business.</li>
+              <li>Communicate clearly across all levels of the organization, from non-technical warehouse staff on the floor to IT peers and operations leadership, translating technical issues into language that drives faster decisions.</li>
+            </ul>
+          </div>
       </div>
+
+      <details class="more-roles reveal">
+        <summary>Earlier Walmart roles</summary>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-date">MAR 2019 – MAR 2023</div>
+            <div class="tl-role">Shipping Operations Lead</div>
+            <div class="tl-org">Walmart · Bethlehem, PA</div>
+            <ul>
+              <li>Directed end-to-end outbound shipping operations across retail and ecommerce fulfillment environments, managing carrier selection, rate optimization, routing decisions, and daily closeouts to meet cost targets and customer delivery commitments.</li>
+              <li>Negotiated carrier contracts, built performance scorecards, and led escalations that held partners accountable and recovered costs on lost and damaged freight.</li>
+              <li>Administered TMS, WMS, ERP, and multi-carrier shipping platforms, troubleshooting order flow exceptions and EDI discrepancies to keep operations running without disruption.</li>
+              <li>Led workforce planning, scheduling, and performance management across multiple shifts, scaling operations for peak season demand and maintaining productivity benchmarks year-round.</li>
+              <li>Authored and enforced SOPs across all outbound functions and applied Lean, 5S, and Kaizen methodology to drive measurable improvements in throughput, cycle time, and cost.</li>
+              <li>Maintained compliance with DOT, OSHA, and IATA regulations, conducting audits, managing hazmat documentation, and closing safety gaps through corrective action.</li>
+              <li>Built and reported KPIs covering on-time delivery, shipping cost per order, SLA performance, and carrier scorecards, using the data to surface savings opportunities and inform leadership decisions.</li>
+              <li>Partnered cross-functionally with inventory, customer service, procurement, and vendor compliance teams to resolve issues, enforce routing guide requirements, and lead peak season readiness planning.</li>
+            </ul>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">NOV 2015 – 2023</div>
+            <div class="tl-role">Shipping Clerk (Collateral Duty)</div>
+            <div class="tl-org">Walmart · Bethlehem, PA</div>
+            <ul>
+              <li>Managed end-to-end shipping operations across retail, ecommerce, and fulfillment environments, processing high volumes of inbound and outbound freight through UPS, FedEx, USPS, DHL, and LTL carriers while maintaining accuracy under daily time pressure.</li>
+              <li>Operated WMS, ERP, and shipping platforms including ShipStation, SAP, Oracle, and carrier-native portals to receive inventory, process orders, and reconcile discrepancies across the full shipment lifecycle.</li>
+              <li>Sustained ecommerce SLA commitments by holding same-day and next-day order cutoffs consistently, including through Q4 peaks and promotional surges where volume and error risk both spike.</li>
+              <li>Executed compliance requirements FBM, and Walmart fulfillment standards, international customs documentation, DOT and IATA hazmat guidelines, and customer routing guides without gaps.</li>
+              <li>Controlled shipping costs through carrier rate shopping, dimensional weight calculations, and packaging decisions that reduced unnecessary spend on high-volume parcel accounts.</li>
+              <li>Filed, tracked, and resolved freight claims for damaged, lost, and short shipments, managing the documentation trail that determines whether a claim gets paid.</li>
+              <li>Trained and onboarded shipping associates on workflows, systems, and safety standards while maintaining personal output and holding the team to consistent performance expectations.</li>
+              <li>Applied OSHA safety standards, chain of custody requirements, and FIFO and FEFO inventory practices across multiple facility layouts and employer environments over seven years.</li>
+            </ul>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">MAR 2018 – FEB 2019</div>
+            <div class="tl-role">Area Manager</div>
+            <div class="tl-org">Walmart · Bethlehem, PA</div>
+            <ul>
+              <li>Managed inbound and outbound freight flow across multiple shifts, adjusting priorities in real time to protect shipment windows.</li>
+              <li>Drove inventory accuracy through structured cycle counting programs and targeted shrink reduction efforts.</li>
+              <li>Redesigned warehouse slotting and pick path layouts to cut travel time and improve throughput.</li>
+              <li>Owned area fulfillment metrics including pick rate, pack rate, and ship accuracy, holding the team accountable to daily targets.</li>
+              <li>Directed returns processing and reverse logistics operations, keeping flow consistent during high-volume periods.</li>
+              <li>Executed cross-docking and flow-through strategies to move product efficiently without sacrificing accuracy.</li>
+              <li>Built shift labor plans tied directly to volume forecasts, reducing both understaffing and unnecessary overtime.</li>
+              <li>Coordinated carrier relationships and dock scheduling to sustain consistent outbound throughput.</li>
+            </ul>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">JAN 2017 – MAR 2018</div>
+            <div class="tl-role">Order Filling Lead</div>
+            <div class="tl-org">Walmart · Bethlehem, PA</div>
+            <ul>
+              <li>Led shift teams of 10 to 30+ associates across picking, packing, and sorting operations, driving daily production targets through hands-on coaching, zone assignments, and real-time workload balancing.</li>
+              <li>Managed end-to-end order fulfillment across same-day, standard, and marketplace channels including Amazon, Walmart.com, and eBay while maintaining SLA compliance and on-time ship rates.</li>
+              <li>Tracked and acted on key performance metrics including UPH, order accuracy, and on-time ship rate at the shift level, using data to make decisions rather than just report results.</li>
+              <li>Identified and resolved root causes of mispicks, inventory discrepancies, and order exceptions, reducing re-ships and return-driven costs through first-touch accuracy improvements.</li>
+              <li>Operated WMS platforms including Manhattan, SAP EWM, and Blue Yonder alongside RF scanners, pick-to-light, and voice-directed picking systems in daily fulfillment execution.</li>
+              <li>Executed high-volume peak season operations through promotional events and holiday surges without sacrificing accuracy or throughput.</li>
+              <li>Enforced OSHA safety standards, carrier packaging compliance, and outbound quality control through regular audits and documented corrective actions.</li>
+            </ul>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">JAN 2014 – JAN 2017</div>
+            <div class="tl-role">Order Filler</div>
+            <div class="tl-org">Walmart · Bethlehem, PA</div>
+            <ul>
+              <li>Fulfilled high-volume orders accurately and efficiently using pick-to-light, pick-to-voice, and RF scanner systems across multiple retail and ecommerce fulfillment environments.</li>
+              <li>Sustained productivity above UPH targets through peak and off-peak demand cycles, consistently meeting SLA and ship date requirements without direct supervision.</li>
+              <li>Navigated multiple Warehouse Management Systems to locate, pull, confirm, and close orders while performing real-time inventory adjustments to resolve discrepancies at the point of pick.</li>
+              <li>Maintained order accuracy through barcode verification, mispick documentation, and direct communication with QC and supervisory staff to drive resolution.</li>
+              <li>Supported inventory integrity through cycle counts, location audits, FIFO rotation, and lot/serial number tracking across regulated and high-value product categories.</li>
+              <li>Operated reach trucks, standup forklifts, and powered pallet jacks safely in fast-paced active warehouse environments while adhering to OSHA standards and site-specific safety protocols.</li>
+              <li>Onboarded rapidly to new systems, facility layouts, and operational processes across multiple employers, contributing to team throughput from day one.</li>
+            </ul>
+          </div>
+        </div>
+      </details>
+
+      <details class="more-roles reveal">
+        <summary>Earlier career before Walmart</summary>
+        <div class="timeline">
+          <div class="tl-item compact">
+            <div class="tl-date">JUL 2010 – JUN 2016</div>
+            <div class="tl-role">Co-Founder &amp; Operations Lead</div>
+            <div class="tl-org">Lehigh Valley Rent-A-Chef · Bangor, PA</div>
+          </div>
+          <div class="tl-item compact">
+            <div class="tl-date">JAN 2012 – JAN 2014</div>
+            <div class="tl-role">Warehouse Associate</div>
+            <div class="tl-org">A &amp; H Sportswear Co., Inc. · Tatamy, PA</div>
+          </div>
+          <div class="tl-item compact">
+            <div class="tl-date">JUN 2008 – JAN 2012</div>
+            <div class="tl-role">Senior Lead Culinary Specialist</div>
+            <div class="tl-org">Friendly's Restaurants · East Stroudsburg, PA</div>
+          </div>
+          <div class="tl-item compact">
+            <div class="tl-date">MAY 2007 – AUG 2008</div>
+            <div class="tl-role">Line Cook</div>
+            <div class="tl-org">Friendly's Restaurants · East Stroudsburg, PA</div>
+          </div>
+          <div class="tl-item compact">
+            <div class="tl-date">MAY 2008 – AUG 2010</div>
+            <div class="tl-role">Construction Worker</div>
+            <div class="tl-org">Selmar Construction LLC · Jersey City, NJ</div>
+          </div>
+          <div class="tl-item compact">
+            <div class="tl-date">JUN 2007 – AUG 2010</div>
+            <div class="tl-role">Stablehand</div>
+            <div class="tl-org">Pocono Ranchlands Prop · Bushkill, PA</div>
+          </div>
+          <div class="tl-item compact">
+            <div class="tl-date">JUN 2006 – AUG 2010</div>
+            <div class="tl-role">Junior CAD Draftsman / Computer Consultant</div>
+            <div class="tl-org">LAS &amp; Associates, LLC · Bushkill, PA</div>
+          </div>
+        </div>
+      </details>
 
       <div class="sub-block reveal">
         <h3>Hands-On Training &amp; Lab Work</h3>
@@ -541,11 +665,14 @@
             <div class="meta">Graduated 2026 · GPA: 3.91 / 4.0 · <span class="highlight">Summa Cum Laude</span></div>
           </div>
         </div>
+        <p class="section-sub" style="margin-top:14px; font-size:14px;">Earlier coursework: Business Administration, Management and Operations, Kutztown University of Pennsylvania (2007 to 2010).</p>
       </div>
 
       <div class="sub-block reveal">
         <h3>Community &amp; Conferences</h3>
         <ul class="award-list">
+          <li><span>Embedded CTF &middot; Participant</span><span class="yr">2026</span></li>
+          <li><span>Southern New Hampshire University &middot; Presidential Honors</span><span class="yr">2026</span></li>
           <li><span>BSides Harrisburg &middot; Security Conference Attendee, building presence with BSides Harrisburg &amp; Philadelphia founders</span><span class="yr">2026</span></li>
           <li><span>Cloud Security Alliance &middot; Lehigh Valley Chapter Member</span><span class="yr">2026</span></li>
           <li><span>National Cyber League &middot; Cybersecurity Competitor</span><span class="yr">2025</span></li>
@@ -704,7 +831,7 @@
         <p class="section-sub">I'm actively growing into a cybersecurity role focused on IAM and cloud security. If you're building a team that needs someone who's already lived the operational reality security frameworks are meant to protect, reach out.</p>
       </div>
       <div class="contact-links reveal">
-        <a class="primary" href="mailto:danny9635@live.com">✉ Email Me</a>
+        <a class="primary" href="mailto:daniel.santiago.sec@gmail.com">✉ Email Me</a>
         <a href="https://www.linkedin.com/in/danielsantiagosec/" target="_blank" rel="noopener">↗ LinkedIn</a>
         <a href="https://github.com/DanielSantiagoSec" target="_blank" rel="noopener">↗ GitHub</a>
         <a href="https://medium.com/@danielsantiagosec" target="_blank" rel="noopener">↗ Blog</a>
