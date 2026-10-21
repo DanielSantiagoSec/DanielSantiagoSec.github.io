@@ -711,21 +711,53 @@
   // ---- Auto-load latest Medium posts via RSS ----
   (function loadMediumPosts(){
     const grid = document.getElementById('postGrid');
-    const feedUrl = 'https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent('https://medium.com/feed/@danielsantiagosec');
+    const MEDIUM_FEED = 'https://medium.com/feed/@danielsantiagosec';
 
-    fetch(feedUrl)
-      .then(res => res.json())
-      .then(data => {
-        if (data.status !== 'ok' || !data.items || !data.items.length){
-          throw new Error('No posts found');
-        }
-        grid.innerHTML = '';
-        data.items.slice(0, 6).forEach(item => {
-          const date = new Date(item.pubDate);
-          const dateStr = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-          const tmp = document.createElement('div');
-          tmp.innerHTML = item.description || '';
-          let excerpt = (tmp.textContent || tmp.innerText || '').trim().slice(0, 120);
+    // Source 1: rss2json (returns JSON)
+    function fromRss2json(){
+      return fetch('https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(MEDIUM_FEED))
+        .then(res => { if (!res.ok) throw new Error('rss2json ' + res.status); return res.json(); })
+        .then(data => {
+          if (data.status !== 'ok' || !data.items || !data.items.length) throw new Error('rss2json empty');
+          return data.items.map(i => ({
+            title: i.title, link: i.link, date: i.pubDate,
+            html: i.description || '',
+            img: i.thumbnail || firstImg(i.content || i.description || '')
+          }));
+        });
+    }
+
+    // Source 2: fetch the raw RSS XML through a public CORS proxy and parse it ourselves
+    function fromXmlProxy(proxyUrl){
+      return fetch(proxyUrl)
+        .then(res => { if (!res.ok) throw new Error('proxy ' + res.status); return res.text(); })
+        .then(txt => {
+          const xml = new DOMParser().parseFromString(txt, 'text/xml');
+          const nodes = Array.from(xml.querySelectorAll('item'));
+          if (!nodes.length) throw new Error('xml empty');
+          return nodes.map(n => {
+            const get = tag => { const el = n.getElementsByTagName(tag)[0]; return el ? el.textContent : ''; };
+            const full = get('content:encoded');
+            return { title: get('title'), link: get('link'), date: get('pubDate'),
+                     html: full || get('description'), img: firstImg(full || get('description')) };
+          });
+        });
+    }
+
+    function firstImg(html){
+      const m = /<img[^>]+src=["']([^"']+)["']/i.exec(html || '');
+      return m ? m[1] : '';
+    }
+    function esc(t){ const d = document.createElement('div'); d.textContent = t || ''; return d.innerHTML; }
+
+    function render(items){
+      grid.innerHTML = '';
+      items.slice(0, 6).forEach(item => {
+        try {
+          const date = new Date(item.date);
+          const dateStr = isNaN(date) ? '' : date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+          const doc = new DOMParser().parseFromString(item.html || '', 'text/html');
+          let excerpt = (doc.body.textContent || '').trim().slice(0, 120);
           if (excerpt.length === 120) excerpt += '…';
 
           const card = document.createElement('a');
@@ -733,38 +765,59 @@
           card.href = item.link;
           card.target = '_blank';
           card.rel = 'noopener';
-          // Cover image: rss2json thumbnail, else first <img> in the post HTML
-          let imgUrl = item.thumbnail || '';
-          if (!imgUrl){
-            const m = /<img[^>]+src=["']([^"']+)["']/i.exec(item.content || item.description || '');
-            if (m) imgUrl = m[1];
-          }
+
           const thumb = document.createElement('div');
           thumb.className = 'post-thumb placeholder';
           thumb.textContent = 'MEDIUM';
-          if (imgUrl){
+          if (item.img){
             const img = new Image();
             img.alt = '';
             img.referrerPolicy = 'no-referrer';
             img.onload = () => { thumb.className = 'post-thumb'; thumb.textContent = ''; thumb.appendChild(img); };
-            img.src = imgUrl;
+            img.src = item.img;
           }
           card.appendChild(thumb);
+
           const body = document.createElement('div');
           body.className = 'post-body';
           body.innerHTML = `
-            <div class="post-date">${dateStr}</div>
-            <div class="post-title">${item.title}</div>
-            <div class="post-excerpt">${excerpt}</div>
+            <div class="post-date">${esc(dateStr)}</div>
+            <div class="post-title">${esc(item.title)}</div>
+            <div class="post-excerpt">${esc(excerpt)}</div>
             <div class="post-more">Read on Medium →</div>
           `;
           card.appendChild(body);
           grid.appendChild(card);
-        });
-      })
-      .catch(() => {
-        grid.innerHTML = '<div class="post-status">Couldn\'t load recent posts right now. <a href="https://medium.com/@danielsantiagosec" target="_blank" rel="noopener" style="color:var(--teal); text-decoration:underline;">read them on Medium →</a></div>';
+        } catch (e) { /* skip one bad post, keep the rest */ }
       });
+      if (!grid.children.length) throw new Error('nothing rendered');
+    }
+
+    function fail(){
+      grid.innerHTML = '<div class="post-status">Couldn\'t load recent posts right now. <a href="https://medium.com/@danielsantiagosec" target="_blank" rel="noopener" style="color:var(--teal); text-decoration:underline;">read them on Medium →</a></div>';
+    }
+
+    // Source 0: posts.json kept fresh by a GitHub Action (same origin, most reliable)
+    function fromLocalJson(){
+      return fetch('/posts.json?t=' + Math.floor(Date.now() / 600000))
+        .then(res => { if (!res.ok) throw new Error('posts.json ' + res.status); return res.json(); })
+        .then(list => {
+          if (!Array.isArray(list) || !list.length) throw new Error('posts.json empty');
+          return list.map(p => ({ title: p.title, link: p.link, date: p.date, html: p.excerpt || '', img: p.img || '' }));
+        });
+    }
+
+    // Try each source in order until one works
+    const sources = [
+      fromLocalJson,
+      fromRss2json,
+      () => fromXmlProxy('https://api.allorigins.win/raw?url=' + encodeURIComponent(MEDIUM_FEED)),
+      () => fromXmlProxy('https://corsproxy.io/?' + encodeURIComponent(MEDIUM_FEED))
+    ];
+    (function next(i){
+      if (i >= sources.length) return fail();
+      sources[i]().then(render).catch(() => next(i + 1));
+    })(0);
   })();
 
   // ---- Fade in on scroll ----
